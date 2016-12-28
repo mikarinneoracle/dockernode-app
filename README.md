@@ -1,6 +1,6 @@
 # dockernode-app
 
-## Build for Docker dockernode-app
+## Build for Docker
 ### mkdir dockernode
 ### git clone git@github.com:mikarinneoracle/dockernode-app.git dockernode
 ### cd dockernode
@@ -11,3 +11,6 @@
 
 ## Running
 ### docker run -it --rm -p 49160:3000 dockernode-app
+
+### Testing
+## curl "http://localhost:49160"
