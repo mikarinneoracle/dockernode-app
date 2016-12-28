@@ -12,5 +12,5 @@
 ## Running
 ### docker run -it --rm -p 49160:3000 dockernode-app
 
-### Testing
-## curl "http://localhost:49160"
+## Testing
+### curl "http://localhost:49160"
