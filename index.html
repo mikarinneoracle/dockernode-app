@@ -24,7 +24,10 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
             $('#result').html(res);
             doEndlessly();
           }
-        });
+        }).fail(function() {
+          console.log("error");
+          doEndlessly();
+        })
       }
     }, 3000);
   }
