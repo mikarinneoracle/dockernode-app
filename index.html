@@ -1,0 +1,33 @@
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous">
+</script>
+
+Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
+<p>
+<div id='result'>Starting up ...</div>
+<p>
+<a href="/exit">Exit</a> server process ..
+
+<script type="text/javascript">
+
+  function doEndlessly() {
+    var done = $('#count').val(); // number of total requests
+    var res = '';
+    setTimeout(function () {
+      for(var i=0; i < done; i++) {
+        $.getJSON("/inc/", function(data) {
+          res += data.i + '<br>';
+          done -= 1;
+          if(done == 0) {
+            $('#result').html(res);
+            doEndlessly();
+          }
+        });
+      }
+    }, 3000);
+  }
+
+  doEndlessly();
+</script>
