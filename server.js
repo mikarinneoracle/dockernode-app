@@ -19,7 +19,6 @@ app.get('/inc', function(req, res) {
   } else {
     session.i = 1;
   }
-  console.log(session.i);
   res.send({ "i": session.i });
 });
 
