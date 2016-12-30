@@ -6,10 +6,15 @@ var app = express();
 var session = require('express-session');
 var i = 0; // When not using sessions
 
-// Use the session middleware
-app.use(session(
-  { secret: 'mynodejssecretXYZ123', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}
-));
+if(useSessions)
+{
+  app.use(session(
+    { secret: 'mynodejssecretXYZ123',
+      resave: false, saveUninitialized: true,
+      cookie: { maxAge: 60000 }
+    }
+  ));
+}
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
