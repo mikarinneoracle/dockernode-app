@@ -6,6 +6,8 @@ var app = express();
 var session = require('express-session');
 var i = 0; // When not using sessions
 
+module.exports = app;
+
 if(useSessions)
 {
   app.use(session(
