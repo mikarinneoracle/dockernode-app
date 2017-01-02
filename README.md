@@ -14,3 +14,6 @@
 
 ## Testing
 ### curl "http://localhost:49160"
+
+## Unit Testing
+### npm test
