@@ -19,7 +19,7 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
     var res = '';
     setTimeout(function () {
       for(var i=0; i < done; i++) {
-        $.getJSON("/inc/", function(data) {
+        $.getJSON('/inc/', function(data) {
           res += data.i + '<br>';
           done -= 1;
           if(done == 0) {
@@ -27,7 +27,6 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
             doEndlessly();
           }
         }).fail(function() {
-          console.log("error");
           doEndlessly();
         })
       }
