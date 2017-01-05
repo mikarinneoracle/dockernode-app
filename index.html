@@ -20,7 +20,7 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
     setTimeout(function () {
       for(var i=0; i < done; i++) {
         $.getJSON('/inc/', function(data) {
-          res += data.i + '<br>';
+          res += data.i + ' <br>';
           console.log(data.useSessions);
           done -= 1;
           if(done == 0) {
