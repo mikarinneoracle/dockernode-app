@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var swaggerJSDoc = require('swagger-jsdoc');
 var port = process.env.PORT || process.env.npm_package_config_port;
 if(process.env.USE_SESSIONS)
 {
@@ -28,6 +29,29 @@ if(useSessions)
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
+/**
+ * @swagger
+ * /inc:
+ *   get:
+ *     tags:
+ *       - Inc
+ *     description: <div>A very simple service.<br></div>
+ *                  <div>Returns the increment of i by 1 in memory.</div>
+ *                  <div>If environment's <b>useSessions=true</b>, returns the increment of i from user's session.</div>
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: Returns the incremented value of i by 1. Also returns the boolean value of useSessions.
+ *         schema:
+ *           properties:
+ *            i:
+ *              type: integer
+ *            useSessions:
+ *              type: boolean
+ */
+
 app.get('/inc', function(req, res) {
   if(useSessions)
   {
@@ -51,4 +75,31 @@ app.get('/exit', function(req, res) {
 app.listen(port, function() {
   	console.log('server listening on port ' + port);
     console.log("Using sessions is :" + useSessions);
+});
+
+// swagger definition
+var swaggerDefinition = {
+  info: {
+    title: 'Node Swagger API',
+    version: '1.0.0',
+    description: 'Docker Node.js RESTful API with Swagger',
+  },
+  basePath: '/',
+};
+
+// options for the swagger docs
+var options = {
+  // import swaggerDefinitions
+  swaggerDefinition: swaggerDefinition,
+  // path to the API docs
+  apis: ['./server.js'],
+};
+
+// initialize swagger-jsdoc
+var swaggerSpec = swaggerJSDoc(options);
+
+// serve swagger
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
 });
