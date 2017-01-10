@@ -15,7 +15,8 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "express-session": "^1.14.2"
+    "express-session": "^1.14.2",
+    "swagger-jsdoc": "^1.8.4"
   },
   "devDependencies": {
     "mocha": "^3.2.0",
