@@ -41,6 +41,11 @@ app.use(express.static(__dirname));
  *     produces:
  *       - application/json
  *     parameters:
+ *       - name: userid
+ *         description: Users's id
+ *         in: query
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: Returns the incremented value of i by 1. Also returns the boolean value of useSessions.
@@ -52,7 +57,8 @@ app.use(express.static(__dirname));
  *              type: boolean
  */
 
-app.get('/inc', function(req, res) {
+app.get('/inc/', function(req, res) {
+  var userid = req.query.userid;
   if(useSessions)
   {
     var session = req.session;
@@ -61,10 +67,10 @@ app.get('/inc', function(req, res) {
     } else {
       session.i = 1;
     }
-    res.send({ 'i': session.i, 'useSessions': useSessions });
+    res.send({ 'i': session.i, 'useSessions': useSessions, 'userid':userid });
   } else {
     i++;
-    res.send({ 'i': i , 'useSessions': useSessions });
+    res.send({ 'i': i , 'useSessions': useSessions, 'userid':userid });
   }
 });
 

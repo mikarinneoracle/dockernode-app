@@ -5,7 +5,8 @@
 </script>
 
 <h2>Node tester</h2>
-
+Userid: <input type='text' id='userid' value='mika' size='20'>
+<p>
 Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
 <p>
 <div id='result'>Starting up ...</div>
@@ -13,15 +14,17 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
 <a href="/exit">Exit</a> server process ..
 
 <script type="text/javascript">
-
+  $('#userid').val($.now());
   function doEndlessly() {
     var done = $('#count').val(); // number of total simultaneos requests
+    var userid = $('#userid').val();
     var res = '';
     setTimeout(function () {
       for(var i=0; i < done; i++) {
-        $.getJSON('/inc/', function(data) {
+        $.getJSON('/inc?userid=' + userid, function(data) {
           res += data.i + ' <br>';
           console.log(data.useSessions);
+          console.log(data.userid);
           done -= 1;
           if(done == 0) { // All reuests done, print out the results
             $('#result').html(res);
