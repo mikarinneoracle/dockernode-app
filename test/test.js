@@ -11,8 +11,6 @@ describe('Running basic unit tests', function() {
         .expect(200)
         .end(function (err, res) {
           if (err) return done(err);
-          var data = res.body;
-          assert.ok(data.i);
           done();
         });
   });
