@@ -62,12 +62,14 @@ app.get('/inc/', function(req, res) {
   if(useSessions)
   {
     var session = req.session;
-    if (session.i) {
+    if (session.i !== null) {
       session.i++;
+      res.send({ 'i': session.i, 'useSessions': useSessions, 'userid':userid });
     } else {
+      console.log("no session found for " + userid);
       session.i = 0;
+      res.send({ 'i': 0, 'useSessions': useSessions, 'userid':userid });
     }
-    res.send({ 'i': session.i, 'useSessions': useSessions, 'userid':userid });
   } else {
     i++;
     res.send({ 'i': i , 'useSessions': useSessions, 'userid':userid });

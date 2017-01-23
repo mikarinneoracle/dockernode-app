@@ -22,7 +22,7 @@ Number of concurrent calls: <input type='text' id='count' value='3' size='2'>
     setTimeout(function () {
       for(var i=0; i < done; i++) {
         $.getJSON('/inc?userid=' + userid, function(data) {
-          if(data.i == 0)
+          if(data.i === null || data.i == 0)
           {
               res += 'New session <br>';
           } else {
