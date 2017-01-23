@@ -65,7 +65,7 @@ app.get('/inc/', function(req, res) {
     if (session.i) {
       session.i++;
     } else {
-      session.i = 1;
+      session.i = 0;
     }
     res.send({ 'i': session.i, 'useSessions': useSessions, 'userid':userid });
   } else {
