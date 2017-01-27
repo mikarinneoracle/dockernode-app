@@ -70,7 +70,7 @@ app.get('/inc/', function(req, res) {
       console.log("A new session " + (userid ? userid : ''));
       session.i = 0;
     }
-    req.session.save();
+    req.session.save(); // Unless calling this the session is saved in the end of the req by default
     result = session.i;
   } else {
     result = i++;
