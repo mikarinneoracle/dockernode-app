@@ -7,7 +7,7 @@
 <h2>Node tester</h2>
 Userid: <input type='text' id='userid' value='' size='20'>
 <p>
-Number of concurrent REST calls: <input type='text' id='count' value='3' size='2'>
+Number of concurrent REST calls: <input type='text' id='count' value='1' size='2'>
 <p>
 <div id='result'>Starting up ...</div>
 <p>
@@ -16,7 +16,13 @@ Number of concurrent REST calls: <input type='text' id='count' value='3' size='2
 <script type="text/javascript">
   $('#userid').val($.now());
   function doEndlessly() {
-    var done = $('#count').val(); // number of total simultaneos requests
+    var done; // number of total simultaneos requests
+    if($('#count').val())
+    {
+      done = $('#count').val();
+    } else {
+      done = 1;
+    }
     var userid = $('#userid').val();
     var res = '';
     setTimeout(function () {
@@ -39,7 +45,7 @@ Number of concurrent REST calls: <input type='text' id='count' value='3' size='2
           $('#result').html('REST error. Please reload.');
         })
       }
-    }, 1000);
+    }, 200);
   }
 
   doEndlessly();
