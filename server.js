@@ -44,7 +44,7 @@ app.use(express.static(__dirname));
  *       - name: userid
  *         description: Users's id
  *         in: query
- *         required: true
+ *         required: false
  *         type: string
  *     responses:
  *       200:
@@ -58,21 +58,28 @@ app.use(express.static(__dirname));
  */
 
 app.get('/inc/', function(req, res) {
-  var userid = req.query.userid;
+  var userid = req.query.userid; // Optional
+  var result;
   if(useSessions)
   {
     var session = req.session;
-    if (session.i !== null) {
+    if (session.i != null)
+    {
       session.i++;
-      res.send({ 'i': session.i, 'useSessions': useSessions, 'userid':userid });
     } else {
-      console.log("no session found for " + userid);
+      console.log("A new session " + (userid ? userid : ''));
       session.i = 0;
-      res.send({ 'i': 0, 'useSessions': useSessions, 'userid':userid });
     }
+    req.session.save();
+    result = session.i;
   } else {
-    i++;
-    res.send({ 'i': i , 'useSessions': useSessions, 'userid':userid });
+    result = i++;
+  }
+  if(userid)
+  {
+    res.send({ 'i': result , 'useSessions': useSessions, 'userid':userid });
+  } else {
+    res.send({ 'i': result , 'useSessions': useSessions });
   }
 });
 

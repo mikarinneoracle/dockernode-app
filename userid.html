@@ -5,21 +5,23 @@
 </script>
 
 <h2>Node tester</h2>
+Userid: <input type='text' id='userid' value='' size='20'>
+<p>
 Number of concurrent REST calls: <input type='text' id='count' value='3' size='2'>
 <p>
 <div id='result'>Starting up ...</div>
 <p>
 <a href="/exit">Exit</a> server process ..
-<p>
-<a href="/userid.html">Use the Userid version</a>
 
 <script type="text/javascript">
+  $('#userid').val($.now());
   function doEndlessly() {
     var done = $('#count').val(); // number of total simultaneos requests
+    var userid = $('#userid').val();
     var res = '';
     setTimeout(function () {
       for(var i=0; i < done; i++) {
-        $.getJSON('/inc', function(data) {
+        $.getJSON('/inc?userid=' + userid, function(data) {
           if(data.i === null || data.i == 0)
           {
               res += 'New session <br>';
@@ -27,6 +29,7 @@ Number of concurrent REST calls: <input type='text' id='count' value='3' size='2
               res += data.i + ' <br>';
           }
           console.log(data.useSessions);
+          console.log(data.userid);
           done -= 1;
           if(done == 0) { // All reuests done, print out the results
             $('#result').html(res);
