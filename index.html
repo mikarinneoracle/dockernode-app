@@ -16,6 +16,12 @@ Number of concurrent REST calls: <input type='text' id='count' value='1' size='2
 <script type="text/javascript">
   function doEndlessly() {
     var done; // number of total simultaneos requests
+    if($('#count').val())
+    {
+      done = $('#count').val();
+    } else {
+      done = 1;
+    }
     var res = '';
     setTimeout(function () {
       for(var i=0; i < done; i++) {
