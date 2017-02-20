@@ -77,6 +77,7 @@ app.get('/inc/', function(req, res) {
   }
   if(userid)
   {
+    console.log(userid + " : " + result);
     res.send({ 'i': result , 'useSessions': useSessions, 'userid':userid });
   } else {
     res.send({ 'i': result , 'useSessions': useSessions });
