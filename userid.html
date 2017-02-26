@@ -42,7 +42,9 @@ Number of concurrent REST calls: <input type='text' id='count' value='1' size='2
             doEndlessly();
           }
         }).fail(function() {
-          $('#result').html('REST error. Please reload.');
+          //$('#result').html('REST error. Please reload.');
+          $('#result').html('Rerouting..');
+          doEndlessly();
         })
       }
     }, 200);
