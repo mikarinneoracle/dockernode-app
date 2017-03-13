@@ -4,9 +4,10 @@
   crossorigin="anonymous">
 </script>
 
-<h2>Node tester 2.0</h2>
-Userid: <input type='text' id='userid' value='' size='20'>
+<h2>Node tester 2.1</h2>
+Userid for database persistence: <input type='text' id='userid' value='' size='20'> <i>Tip: Change your name here</i>
 <p>
+<br>
 Number of concurrent REST calls: <input type='text' id='count' value='1' size='2'>
 <p>
 <div id='result'>Starting up ...</div>
@@ -31,6 +32,9 @@ Number of concurrent REST calls: <input type='text' id='count' value='1' size='2
           if(data.i === null || data.i == 0)
           {
               res += 'New session <br>';
+          } else if(data.i == -1) {
+              $('#result').html("<font color=red>Server error: " + data.err + "</font>");
+              exit();
           } else {
               res += data.i + ' <br>';
           }

@@ -1,7 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var swaggerJSDoc = require('swagger-jsdoc');
+var MongoClient = require('mongodb').MongoClient;
+
 var port = process.env.PORT || process.env.npm_package_config_port;
+var mongodb_host = process.env.BACKEND_MONGODB_HOST || '';
+
 if(process.env.USE_SESSIONS)
 {
     // To support app container user-defined values
@@ -28,6 +32,67 @@ if(useSessions)
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
+
+/**
+ * @swagger
+ * /env:
+ *   get:
+ *     tags:
+ *       - Env
+ *     description: Returns environment variables.
+ *
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Returns environment variables.
+ */
+
+app.get('/env/', function(req, res) {
+  res.send({ 'env' : process.env });
+});
+
+/**
+ * @swagger
+ * /db:
+ *   get:
+ *     tags:
+ *       - DB
+ *     description: Logs on to MondoDB instance. If succesfull writes a log row and returns the number of rows.
+ *
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Returns status if the logon was succesfull.
+ */
+
+app.get('/db/', function(req, res) {
+  MongoClient.connect('mongodb://' + mongodb_host + '/log', function(err, db) {
+    if(err)
+    {
+      console.log(err);
+      res.send({ 'status' : false, 'host' : mongodb_host, 'error' : err });
+    } else {
+      var collection = db.collection('log');
+      collection.find({}).toArray(function(err, log) {
+        if(err)
+        {
+            console.log(err);
+        }
+        var row = {'datetime' : new Date() };
+      	collection.insert(row, function(err, r) {
+      		if(err)
+      		{
+      				console.log(err);
+      		}
+      	});
+        res.send({ 'status' : true, 'log size' : log.length + 1 });
+        db.close();
+      });
+    }
+  });
+});
 
 /**
  * @swagger
@@ -62,25 +127,78 @@ app.get('/inc/', function(req, res) {
   var result;
   if(useSessions)
   {
-    var session = req.session;
-    if (session.i != null)
+    if(userid && mongodb_host)
     {
-      session.i++;
+      // Try locating session from db, create if not found
+      MongoClient.connect('mongodb://' + mongodb_host + '/sessions', function(err, db) {
+        if(err)
+        {
+          console.log(err);
+          res.send({ 'i': -1 , 'err': err.message });
+          return;
+        } else {
+          var collection = db.collection('sessions');
+          collection.find({ userid : userid }).toArray(function(err, sessions) {
+            if(err)
+            {
+                console.log(err);
+                res.send({ 'i': -1 , 'err': err.message });
+                return;
+            } else
+            {
+              if(sessions && sessions.length == 1)
+              {
+                  var userid_i = sessions[0].i;
+                  var _id = sessions[0]._id;
+                  userid_i++;
+                  // update
+                  var row = {'userid' : userid, 'i' :  userid_i};
+                  collection.update({ userid : userid }, row, function(err, r) {
+                    if(err)
+                    {
+                        console.log(err);
+                        res.send({ 'i': -1 , 'err': err.message });
+                        return;
+                    }
+                    res.send({ 'i': userid_i , 'useSessions': useSessions, 'userid':userid });
+                    db.close();
+                    return;
+                  });
+              } else {
+                  // insert
+                  var row = {'userid' : userid, 'i' :  0};
+                  collection.insert(row, function(err, r) {
+                    if(err)
+                    {
+                        console.log(err);
+                        res.send({ 'i': -1 , 'err': err.message });
+                        return;
+                    }
+                    res.send({ 'i': 0 , 'useSessions': useSessions, 'userid':userid });
+                    db.close();
+                    return;
+                  });
+              }
+            }
+          });
+        }
+      });
     } else {
-      console.log("A new session " + (userid ? userid : ''));
-      session.i = 0;
+      var session = req.session;
+      if (session.i != null)
+      {
+        session.i++;
+      } else {
+        console.log("A new session " + (userid ? userid : ''));
+        session.i = 0;
+      }
+      req.session.save(); // Unless calling this the session is saved in the end of the req by default
+      result = session.i;
+      res.send({ 'i': result , 'useSessions': useSessions });
     }
-    req.session.save(); // Unless calling this the session is saved in the end of the req by default
-    result = session.i;
   } else {
     result = i++;
-  }
-  if(userid)
-  {
-    console.log(userid + " : " + result);
-    res.send({ 'i': result , 'useSessions': useSessions, 'userid':userid });
-  } else {
-    res.send({ 'i': result , 'useSessions': useSessions });
+    res.send({ 'i': i , 'useSessions': useSessions });
   }
 });
 
