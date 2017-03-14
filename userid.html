@@ -4,15 +4,74 @@
   crossorigin="anonymous">
 </script>
 
-<h2>Node tester 2.1</h2>
-Userid for database persistence: <input type='text' id='userid' value='' size='20'> <i>Tip: Change your name here</i>
-<p>
-<br>
-Number of concurrent REST calls: <input type='text' id='count' value='1' size='2'>
-<p>
-<div id='result'>Starting up ...</div>
-<p>
-<a href="/exit">Exit</a> server process ..
+<!DOCTYPE html>
+<html>
+<head>
+<title>Node test tool 3.0</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/navbar.css">
+
+</head>
+<body>
+
+		<!-- Fixed navbar -->
+	  <nav class="navbar navbar-fixed-top grey">
+	    <div class="container">
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	          <span class="sr-only">Toggle navigation</span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <a class="navbar-brand" href="/#/"><img src="/oracle-logo.png"></a></a>
+	      </div>
+        <div id="navbar" class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav">
+	          <li class="active"><a href="index.html">Counter test</a></li>
+            <li class="active"><a href="userid.html">Userid test</a></li>
+	        </ul>
+	      </div><!--/.nav-collapse -->
+	    </div>
+	  </nav>
+
+    <div class="container">
+      <div class="bd-content">
+        <form>
+          <p>
+          <div class="form-group col-md-3">
+            <label for="userid">User ID</label>
+            <input class="form-control" type="text" id="userid" size="20" value="">
+            <small class="form-text text-muted">Userid for database persistence (if db configured)</small>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="count">Thread count</label>
+            <input class="form-control" type="text" id="count" value="1">
+            <small class="form-text text-muted">Number of concurrent REST calls</small>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="delay">Delay</label>
+            <input class="form-control" type="text" id="delay" value="200">
+            <small class="form-text text-muted">Delay between REST calls in ms</small>
+          </div>
+          <div class="form-group col-md-12">
+            <div class="well" id='result'>Starting up ...</div>
+          </div>
+          <div class="form-group col-md-12">
+            <div>
+              <a href="/exit">Exit</a> server process ..
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
+</body>
 
 <script type="text/javascript">
   $('#userid').val($.now());
@@ -23,6 +82,13 @@ Number of concurrent REST calls: <input type='text' id='count' value='1' size='2
       done = $('#count').val();
     } else {
       done = 1;
+    }
+    var delay; // wait between iterations
+    if($('#delay').val())
+    {
+      delay = $('#delay').val();
+    } else {
+      delay = 0;
     }
     var userid = $('#userid').val();
     var res = '';
@@ -51,8 +117,9 @@ Number of concurrent REST calls: <input type='text' id='count' value='1' size='2
           doEndlessly();
         })
       }
-    }, 200);
+    }, delay);
   }
 
   doEndlessly();
 </script>
+</html>

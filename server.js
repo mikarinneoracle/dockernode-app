@@ -101,8 +101,9 @@ app.get('/db/', function(req, res) {
  *     tags:
  *       - Inc
  *     description: <div>A very simple service.<br></div>
- *                  <div>Returns the increment of i by 1 in memory.</div>
+ *                  <div>Returns the increment of i by 1 in memory (or from database if configured and userid passed).</div>
  *                  <div>If environment's <b>useSessions=true</b>, returns the increment of i from user's session.</div>
+ *                  <div>Userid is optional and when passed and database configured increments and returns i from database for the passed username.</div>
  *     produces:
  *       - application/json
  *     parameters:
