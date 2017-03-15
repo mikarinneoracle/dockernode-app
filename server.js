@@ -4,7 +4,7 @@ var swaggerJSDoc = require('swagger-jsdoc');
 var MongoClient = require('mongodb').MongoClient;
 
 var port = process.env.PORT || process.env.npm_package_config_port;
-var mongodb_host = process.env.BACKEND_MONGODB_HOST || '';
+var mongodb_host = process.env.BACKEND_MONGODB_HOST || null;
 
 if(process.env.USE_SESSIONS)
 {
@@ -153,8 +153,9 @@ app.get('/inc/', function(req, res) {
                   var _id = sessions[0]._id;
                   userid_i++;
                   // update
-                  var row = {'userid' : userid, 'i' :  userid_i};
-                  collection.update({ userid : userid }, row, function(err, r) {
+                  console.log("Updating db session " + (userid ? userid : ''));
+                  var session = {'userid' : userid, 'i' :  userid_i};
+                  collection.update({ userid : userid }, session, function(err, r) {
                     if(err)
                     {
                         console.log(err);
@@ -167,8 +168,9 @@ app.get('/inc/', function(req, res) {
                   });
               } else {
                   // insert
-                  var row = {'userid' : userid, 'i' :  0};
-                  collection.insert(row, function(err, r) {
+                  console.log("Creating a new db session " + (userid ? userid : ''));
+                  var session = {'userid' : userid, 'i' :  0};
+                  collection.insert(session, function(err, r) {
                     if(err)
                     {
                         console.log(err);
