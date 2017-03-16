@@ -5,14 +5,15 @@ var MongoClient = require('mongodb').MongoClient;
 
 var port = process.env.PORT || process.env.npm_package_config_port;
 var mongodb_host = process.env.BACKEND_MONGODB_HOST || null;
+var useSessions = true; // Default is true
 
 if(process.env.USE_SESSIONS)
 {
     // To support app container user-defined values
-    var useSessions = process.env.USE_SESSIONS === 'true';
+    useSessions = process.env.USE_SESSIONS === 'true';
 } else {
     // To support Docker package.json user-defined values
-    var useSessions = process.env.npm_package_config_use_sessions === 'true';
+    useSessions = process.env.npm_package_config_use_sessions === 'true';
 }
 var app = express();
 var session = require('express-session');
