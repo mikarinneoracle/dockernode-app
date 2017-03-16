@@ -205,6 +205,84 @@ app.get('/inc/', function(req, res) {
   }
 });
 
+
+/**
+ * @swagger
+ * /last:
+ *   get:
+ *     tags:
+ *       - Last
+ *     description: <div>A very simple service. Same as inc but returns the last value from db instead.<br></div>
+ *                  <div>Works only when database persistence configured.</div>
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: userid
+ *         description: Users's id
+ *         in: query
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: Returns the user's last value of i from db.
+ *         schema:
+ *           properties:
+ *            i:
+ *              type: integer
+ *            useSessions:
+ *              type: boolean
+ *       404:
+ *         description: User not found.
+ *         schema:
+ *           properties:
+ *            msg:
+ *              type: string
+ */
+
+app.get('/last/', function(req, res) {
+  var userid = req.query.userid; // Optional
+  var result;
+  if(useSessions)
+  {
+    if(userid && mongodb_host)
+    {
+      MongoClient.connect('mongodb://' + mongodb_host + '/sessions', function(err, db) {
+        if(err)
+        {
+          console.log(err);
+          res.send({ 'i': -1 , 'err': err.message });
+          return;
+        } else {
+          var collection = db.collection('sessions');
+          collection.find({ userid : userid }).toArray(function(err, sessions) {
+            if(err)
+            {
+                console.log(err);
+                res.send({ 'i': -1 , 'err': err.message });
+                return;
+            } else
+            {
+              if(sessions && sessions.length == 1)
+              {
+                  var userid_i = sessions[0].i;
+                  res.send({ 'i': userid_i , 'useSessions': useSessions, 'userid':userid });
+                  db.close();
+                  return;
+              } else {
+                  // Not found
+                  db.close();
+                  return res.status(404).json( { 'msg' : userid + ' not found' });
+              }
+            }
+          });
+        }
+      });
+    } else {
+      return res.status(500).json( { 'msg' : 'Need to have db configured and userid supplied in this service call.' });
+    }
+  }
+});
+
 app.get('/exit', function(req, res) {
   process.exit();
 });
