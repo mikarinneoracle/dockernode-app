@@ -11,9 +11,11 @@ if(process.env.USE_SESSIONS)
 {
     // To support app container user-defined values
     useSessions = process.env.USE_SESSIONS === 'true';
-} else {
+    console.log("USE_SESSIONS - Setting use sessions " + useSessions);
+} else if(process.env.npm_package_config_use_sessions) {
     // To support Docker package.json user-defined values
     useSessions = process.env.npm_package_config_use_sessions === 'true';
+    console.log("npm_package_config_use_sessions - Setting use sessions " + useSessions);
 }
 var app = express();
 var session = require('express-session');
