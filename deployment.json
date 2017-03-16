@@ -2,6 +2,6 @@
  "memory": "2G",
  "instances": "3",
  "environment": {
- "USE_SESSIONS":"true"
+ "USE_SESSIONS": "true"
  }
 }
