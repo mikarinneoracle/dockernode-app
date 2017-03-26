@@ -156,7 +156,12 @@ app.get('/inc/', function(req, res) {
       }
       req.session.save(); // Unless calling this the session is saved in the end of the req by default
       result = session.i;
-      res.send({ 'i': result , 'useSessions': useSessions });
+      if(userid)
+      {
+        res.send({ 'i': result , 'useSessions': useSessions , 'userid' : userid });
+      } else {
+        res.send({ 'i': result , 'useSessions': useSessions });
+      }
   } else {
     result = i++;
     res.send({ 'i': i , 'useSessions': useSessions });
