@@ -8,7 +8,7 @@
   },
   "config": {
     "port": "3000",
-    "use_sessions": true
+    "use_sessions": false
   },
   "author": "mika.rinne@oracle.com",
   "license": "ISC",
