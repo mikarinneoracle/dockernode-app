@@ -1,6 +1,6 @@
 {
   "name": "dockernode",
-  "version": "3.0.1",
+  "version": "3.0.0",
   "description": "node.js tester for docker, OCCS and ACCS",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "config": {
     "port": "3000",
-    "use_sessions": true
+    "use_sessions": false
   },
   "author": "mika.rinne@oracle.com",
   "license": "ISC",
