@@ -6,6 +6,7 @@ var MongoClient = require('mongodb').MongoClient;
 var port = process.env.PORT || process.env.npm_package_config_port;
 var mongodb_host = process.env.BACKEND_MONGODB_HOST || null;
 var useSessions = true; // Default is true
+var loaderioKey = process.env.LOADERIO_KEY || null;
 
 if(process.env.USE_SESSIONS)
 {
@@ -35,6 +36,37 @@ if(useSessions)
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
+/**
+ * @swagger
+ * /loaderio-*:
+ *   get:
+ *     tags:
+ *       - Loaderio
+ *     description: Key for the Loader.io
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: Returns the Loader.io key.
+ *         schema:
+ *           properties:
+ *       404:
+ *         description: Key not found.
+ *         schema:
+ *           properties:
+ *            msg:
+ *              type: string
+ */
+
+app.get('/loaderio-*', function(req, res) {
+    if(loaderioKey)
+    {
+        res.send(loaderioKey);
+    } else {
+        res.send({ 'msg': 'Loader.io key missing from config' });
+    }
+});
 
 /**
  * @swagger
