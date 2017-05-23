@@ -49,8 +49,6 @@ app.use(express.static(__dirname));
  *     responses:
  *       200:
  *         description: Returns the Loader.io key.
- *         schema:
- *           properties:
  *       404:
  *         description: Key not found.
  *         schema:
