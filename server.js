@@ -36,26 +36,6 @@ if(useSessions)
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
-/**
- * @swagger
- * /loaderio-*:
- *   get:
- *     tags:
- *       - Loaderio
- *     description: Key for the Loader.io
- *     produces:
- *       - application/json
- *     parameters:
- *     responses:
- *       200:
- *         description: Returns the Loader.io key.
- *       404:
- *         description: Key not found.
- *         schema:
- *           properties:
- *            msg:
- *              type: string
- */
 
 app.get('/loaderio-*', function(req, res) {
     if(loaderioKey)
