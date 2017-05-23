@@ -42,7 +42,7 @@ app.get('/loaderio-*', function(req, res) {
     {
         res.send(loaderioKey);
     } else {
-        res.send({ 'msg': 'Loader.io key missing from config' });
+        return res.status(404).json( { 'msg' : 'Loader.io key missing from config' });
     }
 });
 
