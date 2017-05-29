@@ -2,7 +2,7 @@ box:
     id: $DOCKER_REGISTRY/$IMAGE_NAME
     username: $DOCKER_USERNAME
     password: $DOCKER_PASSWORD
-    tag: sticky
+    tag: $APP_TAG
     registry: https://registry.hub.docker.com
 
 deploy:
