@@ -1,8 +1,8 @@
 box:
-    id: ubuntu
+    id: mikarinneoracle/ubuntu
     tag: trusty
     registry: https://registry.hub.docker.com
 
 deploy:
   steps:
-    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.5
+    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.6
