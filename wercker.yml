@@ -2,7 +2,7 @@ box:
     id: $DOCKER_REGISTRY/$IMAGE_NAME
     username: $DOCKER_USERNAME
     password: $DOCKER_PASSWORD
-    tag: $WERCKER_MAIN_PIPELINE_STARTED
+    tag: sticky
     registry: https://registry.hub.docker.com
 
 deploy:
