@@ -11,5 +11,36 @@ deploy:
             jq --version
             curl --version
 
+            set -ex
+
+            INSECURE_CURL="-k"
+
+            # ------------------------------------
+            # Step 1: Trigger deploy via API
+            # ------------------------------------
+            ORIGINAL_CANDIDATE=$(curl ${INSECURE_CURL} -s -XGET -H "Authorization: Bearer ${API_TOKEN}" ${SERVICE_MANAGER}/api/kv/rolling/${APP_NAME}/candidate/id?raw=true)
+            TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+            [ -z "$SCALE_AMOUNT" ] && { SCALE_AMOUNT=1; }
+
+            POSTDATA=$(cat <<ENDOFTEMPLATE
+            {
+              "deployment_id": "${APP_NAME}-${TIMESTAMP}",
+              "deployment_name": "${APP_FRIENDLY_NAME} ${$WERCKER_MAIN_PIPELINE_STARTED}",
+              "desired_state": 1,
+              "placement": {
+                "pool_id": "default"
+              },
+              "quantities": {
+                "app": ${SCALE_AMOUNT}
+              },
+              "stack": {
+                "content": "version: 2\nservices:\n  app:\n    image: \"${DOCKER_REGISTRY}/${IMAGE_NAME}:${$WERCKER_MAIN_PIPELINE_STARTED}\"\n    ports:\n      - ${EXPOSED_PORT}/tcp\n    environment:\n      - LOADERIO_KEY=loaderio-0806b2c02d2b955d22996f2650fc117a\n      - \"occs:availability=per-pool\"\n      - \"occs:scheduler=random\"\n",
+                "service_id": "app",
+                "service_name": "${APP_FRIENDLY_NAME} ${$WERCKER_MAIN_PIPELINE_STARTED}",
+                "subtype": "service"
+              }
+            }
+            ENDOFTEMPLATE
+            )
 
 #    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.6
