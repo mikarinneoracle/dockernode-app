@@ -5,4 +5,9 @@ box:
 
 deploy:
   steps:
-    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.6
+    script:
+        code: |
+            RESPONSE=$(curl ${INSECURE_CURL} -s -XGET -H "Authorization: Bearer ${API_TOKEN}" ${SERVICE_MANAGER}/api/v2/deployments/${APP_NAME}-${TIMESTAMP} | recode html..ascii | jq ".deployment | .current_state == .desired_state")
+            echo RESPONSE
+            
+#    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.6
