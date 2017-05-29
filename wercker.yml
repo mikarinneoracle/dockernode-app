@@ -1,8 +1,6 @@
 box:
-    id: $DOCKER_REGISTRY/$IMAGE_NAME
-    username: $DOCKER_USERNAME
-    password: $DOCKER_PASSWORD
-    tag: $APP_TAG
+    id: ubuntu
+    tag: zesty
     registry: https://registry.hub.docker.com
 
 deploy:
@@ -13,4 +11,4 @@ deploy:
         tag: $WERCKER_MAIN_PIPELINE_STARTED
         repository: $DOCKER_REGISTRY/$IMAGE_NAME
         registry: https://registry.hub.docker.com
-    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.4
+    - mikarinneoracle/OCCS-rolling-router-deploy@1.0.5
