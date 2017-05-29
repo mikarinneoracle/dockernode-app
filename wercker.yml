@@ -1,6 +1,6 @@
 box:
     id: ubuntu
-    tag: zesty
+    tag: trusty
     registry: https://registry.hub.docker.com
 
 deploy:
