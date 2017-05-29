@@ -5,20 +5,20 @@ box:
 
 deploy:
   steps:
-    - script:
-        name: Build
-        code: |
-            docker --version
-            sudo service docker start
-            docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-            docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED} .
-            docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED}
-    #- internal/docker-push:
-    #    username: $DOCKER_USERNAME
-    #    password: $DOCKER_PASSWORD
-    #    tag: $WERCKER_MAIN_PIPELINE_STARTED
-    #    repository: $DOCKER_REGISTRY/$APP_NAME
-    #    registry: https://registry.hub.docker.com
+    #- script:
+    #    name: Build
+    #    code: |
+    #        docker --version
+    #        sudo service docker start
+    #        docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    #        docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED} .
+    #        docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED}
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        tag: $WERCKER_MAIN_PIPELINE_STARTED
+        repository: $DOCKER_REGISTRY/$APP_NAME
+        registry: https://registry.hub.docker.com
     - script:
         name: Deploy to OCCS
         code: |
