@@ -20,9 +20,6 @@ deploy:
     - script:
         name: Deploy to OCCS
         code: |
-            jq --version
-            curl --version
-
             set -ex
 
             INSECURE_CURL="-k"
