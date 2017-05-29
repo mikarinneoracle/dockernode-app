@@ -7,7 +7,6 @@ box:
 
 deploy:
   steps:
-    - apt-get install recode
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
