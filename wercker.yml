@@ -6,7 +6,7 @@ box:
 deploy:
   steps:
     - script:
-        name: testing
+        name: echo "Deploy to OCCS" ${APP_FRIENDLY_NAME} ${SERVICE_MANAGER}
         code: |
             jq --version
             curl --version
