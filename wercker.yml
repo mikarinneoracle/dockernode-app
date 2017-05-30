@@ -1,6 +1,6 @@
 box:
-    id: mikarinneoracle/ubuntu
-    tag: trusty
+    id: mikarinneoracle/dockernode
+    tag: sticky
     registry: https://registry.hub.docker.com
 
 deploy:
