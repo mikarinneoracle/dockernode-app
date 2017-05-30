@@ -16,7 +16,7 @@ deploy:
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
-        tag: test
+        tag: $WERCKER_MAIN_PIPELINE_STARTED
         repository: $DOCKER_REGISTRY/$APP_NAME
         registry: https://registry.hub.docker.com
     - script:
