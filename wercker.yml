@@ -9,7 +9,7 @@ deploy:
         name: Build
         code: |
             docker --version
-            sudo service docker start
+            service docker start
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED} .
             docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED}
