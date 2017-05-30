@@ -5,6 +5,14 @@ box:
 
 deploy:
   steps:
+    - script:
+        name: check
+        code: |
+            npm --version
+            docker --version
+            jq --version
+            curl --version
+            recode --version
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
