@@ -6,6 +6,9 @@ box:
 build:
   steps:
     - npm-install
+    - internal/watch:
+        code: node server.js
+        reload: true
 deploy:
   steps:
     - script:
