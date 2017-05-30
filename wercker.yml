@@ -3,6 +3,9 @@ box:
     tag: $IMAGE_TAG
     registry: https://registry.hub.docker.com
 
+build:
+  steps:
+    - npm-install
 deploy:
   steps:
     - script:
