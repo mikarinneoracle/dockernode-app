@@ -8,7 +8,7 @@ deploy:
     - script:
         name: Build
         code: |
-             sudo apt-get -y install libc-dev-bin libc6 libc6-dev
+             sudo apt-get -y install software-properties-common
              sudo apt-get install -y recode
              sudo apt-get install -y jq
              sudo apt-get install -y curl
