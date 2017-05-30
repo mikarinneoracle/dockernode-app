@@ -9,7 +9,7 @@ deploy:
         name: check
         code: |
             npm --version
-            docker --version
+            node --version
             jq --version
             curl --version
             recode --version
