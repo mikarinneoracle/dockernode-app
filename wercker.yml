@@ -1,22 +1,10 @@
 box:
-    id: mikarinneoracle/dockernode
-    tag: sticky
+    id: mikarinneoracle/ubuntu
+    tag: trusty
     registry: https://registry.hub.docker.com
 
 deploy:
   steps:
-    - script:
-        name: Build
-        code: |
-             jq --version
-             curl --version
-             recode --version
-
-    #        docker --version
-    #        service docker start
-    #        docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    #        docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED} .
-    #        docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${WERCKER_MAIN_PIPELINE_STARTED}
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
