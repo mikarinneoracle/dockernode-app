@@ -8,7 +8,6 @@ dev:
     - npm-install
     - internal/watch:
         code: $DOCKER_CMD
-        ports: $EXPOSED_PORT
         reload: true
 build:
   steps:
