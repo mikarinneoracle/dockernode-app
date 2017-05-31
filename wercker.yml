@@ -8,6 +8,7 @@ dev:
     - npm-install
     - internal/watch:
         code: $DOCKER_CMD
+        ports: "3000"
         reload: true
 build:
   steps:
