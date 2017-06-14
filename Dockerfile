@@ -1,15 +1,15 @@
 FROM mikarinneoracle/ubuntu:trusty
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# Create app directory; same as Wercker default
+RUN mkdir -p /pipeline/source
+WORKDIR /pipeline/source
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json /pipeline/source/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . /pipeline/source/
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
