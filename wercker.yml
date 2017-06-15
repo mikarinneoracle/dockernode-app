@@ -1,6 +1,6 @@
 box:
     id: $DOCKER_REGISTRY/$IMAGE_NAME
-    tag: $IMAGE_TAG
+    tag: $APP_TAG
     registry: https://registry.hub.docker.com
 
 build:
