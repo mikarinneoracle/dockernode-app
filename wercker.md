@@ -88,10 +88,17 @@ After the workflow has been created and the wercker.yml added to the application
 
 ![Logo](deploy.png)
 
-After the succesful completition of the workflow a new image of the application with a timestamp tag should be pushed to Docker-hub and deployed to the Oracle Container Cloud Service. If there was a previous candidate version of the application running in OCCS it should have also been deleted.
+After the succesful completition of the workflow a new image of the application with a timestamp tag should be pushed to Docker-hub and deployed to Oracle Container Cloud Service. If there was a previous candidate version of the application running in OCCS it should have also been deleted.
 
 ![Logo](docker-hub.png)
 
 ![Logo](deployments.png)
+
+### First time deployment
+
+In the first commit it is normal that the workflow fails to the last step since there's no previous candidate version available to be removed from OCCS. This can been seen from log.
+
+![Logo](build-deploy.png)
+
 
 
