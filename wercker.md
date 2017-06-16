@@ -25,4 +25,31 @@ build:
     - npm-install
 </pre>
 
+The deploy pipeline that is executed after a succesful build pipeline is a bit more complex having three steps:
+
+<pre>
+deploy:
+  steps:
+    - script:
+        name: check
+        code: |
+            npm --version
+            node --version
+            jq --version
+            curl --version
+            recode --version
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        tag: $WERCKER_MAIN_PIPELINE_STARTED
+        repository: $DOCKER_REGISTRY/$IMAGE_NAME
+        registry: https://registry.hub.docker.com
+    - mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0
+</pre>
+
+The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy for the Oracle Container Cloud service.
+
+The second step `internal/docker-push` pushes the built image to Docker-hub repository specified by the Workflow `environment variables`. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image.
+
+
 
