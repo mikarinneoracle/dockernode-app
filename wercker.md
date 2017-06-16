@@ -92,4 +92,6 @@ After the succesful completition of the workflow a new image of the application 
 
 ![Logo](docker-hub.png)
 
+![Logo](deployments.png)
+
 
