@@ -1,4 +1,4 @@
-# Rolling router sticky sessions with Wercker
+# Rolling router with Wercker
 
 Since the Oracle acquisition of <a href="http://www.wercker.com/">Wercker</a> we have moved the 
 <a href="https://gist.github.com/mikarinneoracle/5f1e513f2a856a3be86c31c3f0dcabe2#rolling-deployments">deployment process
