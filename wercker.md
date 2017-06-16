@@ -60,7 +60,7 @@ deploy:
     - mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0
 </pre>
 
-The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy for the Oracle Container Cloud service.
+The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy to the Oracle Container Cloud service.
 
 The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image instead of the `$TRAVIS_BUILD_NUMBER`that we used in the Travis CI. That's the other change we have comparing Travis CI and Wercker workflow environment variables.
 
