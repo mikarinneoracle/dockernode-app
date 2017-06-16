@@ -1,4 +1,4 @@
-#Rolling router sticky sessions with Wercker
+## Rolling router sticky sessions with Wercker
 
 Since the Oracle acquisition of <a href="http://www.wercker.com/">Wercker</a> we have moved the 
 <a href="https://gist.github.com/mikarinneoracle/5f1e513f2a856a3be86c31c3f0dcabe2#rolling-deployments">deployment process
@@ -71,7 +71,7 @@ This is done as a `registry step`that is found in the <a href="https://app.werck
 
 The source code of the `run.sh` for the registry step is found in <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">this git-hub project</a>. It also includes the `wercker-step.yml` that defines the required and optional parameters for the step. These variables can be saved as environment variables for the workflow like we have seen in previous steps.
 
-## Workflow in Wercker UI
+### Workflow in Wercker UI
 
 To run the workflow it should look like this:
 
