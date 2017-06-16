@@ -3,12 +3,15 @@ Since the Oracle acquisition of <a href="http://www.wercker.com/">Wercker</a> we
 of the rolling router</a> from Travis CI to Wercker.
 
 The changes aren't big. The main difference is that whereas Travis CI uses `Ubuntu` shell environment to build and deploy 
-the desired application Wercker uses any Docker image, called as base `box`, as the base image and environment for the build and deploy process called as `pipeline`. 
+the desired application Wercker uses any Docker image, called as base `box`, as the base image and environment for the build and deploy process. In Wercker this process is called as `pipeline`. 
 
-To support the utilities required by the original script like `curl`, `jq` and `recode` we've also chosen Ubuntu as the `box` for our application and it's build and deploy process by Wercker.
+To support the utilities required by the original script like `curl`, `jq` and `recode` we've also chosen Ubuntu as the `box` for our application and it's pipeline by Wercker.
 
-The first thing to do is to build our Node.js application image on top of the Ubuntu image using 
+The first thing to do is to build our sample Node.js application image on top of the Ubuntu image using 
 <a href="https://github.com/mikarinneoracle/dockernode-app/blob/master/Dockerfile">this Dockerfile</a>.
 As you can see we are using Wercker's source directory `/pipeline/source` as the `WORKDIR`.
 
-Once this image is built we can use is the box 
+Once this image is built we can then use is as the box for the pipeline.
+
+Each Wercker pipeline needs a `Wercker.yml` that defines the steps for the pipeline process. In our sample Node.js application the <a href="https://github.com/oracle/docker-images/blob/master/ContainerCloud/images/rolling-router-sticky-sessions/wercker.yml">Wercker.yml file looks like this<a>.
+
