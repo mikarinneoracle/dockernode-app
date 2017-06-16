@@ -67,7 +67,7 @@ The second step `internal/docker-push` pushes the built image to Docker-hub repo
 The final step of deploy pipeline, and the whole workflow, is the actual deploy to Oracle Container Cloud service.
 This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`.
 
-The source code `run.sh` for the registry step is found in <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">this git-hub project</a>. It also includes the `wercker-step.yml` that defines the required and optional parameters for step that can be saved as environment variables for the workflow as seen earlier.
+The source code of the `run.sh` for the registry step is found in <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">this git-hub project</a>. It also includes the `wercker-step.yml` that defines the required and optional parameters for step that can be saved as environment variables for the workflow as seen earlier.
 
 
 
