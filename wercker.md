@@ -21,7 +21,7 @@ Once this image is built we can then use it as the box for the Wercker workflow.
 
 Each Wercker workflow needs a `Wercker.yml` that defines the steps for it. In our sample Node.js application the <a href="https://github.com/oracle/docker-images/blob/master/ContainerCloud/images/rolling-router-sticky-sessions/wercker.yml">Wercker.yml file looks like this<a>.
 
-Here, the Wercker.yml consists of box definition and then two `pipelines` named as `build` and `deploy`.
+Here, the Wercker.yml consists of the box definition and then two `pipelines` named as `build` and `deploy`.
 
 The box definition is based on our Node.js application image that we just build on top of Ubuntu:
 
