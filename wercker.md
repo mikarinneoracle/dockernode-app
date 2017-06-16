@@ -84,7 +84,7 @@ To run the workflow for the application it should look like this having the buil
 
 ### Starting the workflow
 
-After the workflow has been created and the wercker.yml added to the application the workflow can be started by committing and pushing a change to it.  When the workflow has run succesfully the deploy pipeline result should look like this:
+After the workflow has been created and the wercker.yml added to the application the workflow can be then started by committing and pushing a change to it.  When the workflow has run succesfully the deploy pipeline result should look like this:
 
 ![Logo](deploy.png)
 
