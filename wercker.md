@@ -11,7 +11,7 @@ The first thing to do is to build our sample Node.js application image on top of
 <a href="https://github.com/mikarinneoracle/dockernode-app/blob/master/Dockerfile">this Dockerfile</a>.
 Here, we are using Wercker's source directory `/pipeline/source` as the `WORKDIR`.
 
-Once this image is built we can then use is as the box for the Wercker workflow.
+Once this image is built we can then use it as the box for the Wercker workflow.
 
 Each Wercker workflow needs a `Wercker.yml` that defines the steps for it. In our sample Node.js application the <a href="https://github.com/oracle/docker-images/blob/master/ContainerCloud/images/rolling-router-sticky-sessions/wercker.yml">Wercker.yml file looks like this<a>.
 
@@ -28,7 +28,7 @@ box:
 
 Here, the Docker box image e.g. `mikarinneoracle/dockernode` is specified by the workflow `environment variables` $DOCKER_REGISTRY` and `$IMAGE_NAME`.
 
-What's new compared to the original Travis CI is the optional `$APP_TAG` environment variable that specifies the tag for our box application. The default value for this is `latest`.
+What's new compared to the original Travis CI is the optional `$APP_TAG` environment variable that specifies the tag for our box application. The default value for this is `latest`. In our case we using `wercker` as a tag for the box image. In principle the variables are the same we used in the Travis CI.
 
 The build pipeline is very simple consisting only of one `step`:
 
@@ -62,7 +62,13 @@ deploy:
 
 The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy for the Oracle Container Cloud service.
 
-The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image.
+The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image instead of the `$TRAVIS_BUILD_NUMBER`that we used in the Travis CI. That's the other change we have comparing Travis CI and Wercker workflow environment variables.
+
+The final step of deploy pipeline, and the whole workflow, is the actual deploy to Oracle Container Cloud service.
+This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`.
+
+The source code `run.sh` for the registry step is found in <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">this git-hub project</a>. It also includes the `wercker-step.yml` that defines the required and optional parameters for step that can be saved as environment variables for the workflow as seen earlier.
+
 
 
 
