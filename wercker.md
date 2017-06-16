@@ -96,9 +96,11 @@ After the succesful completition of the workflow a new image of the application 
 
 ### First time deployment
 
-In the first commit it is normal that the workflow fails to the last step since there's no previous candidate version available to be removed from OCCS. This can been seen from log.
+In the first commit it is normal that the workflow fails to the last step since there's no previous candidate version available to be removed from OCCS. This can been seen from the step log.
 
 ![Logo](build-deploy.png)
 
-
+<pre>
+Tried to remove inactive deployment rolling/null but it doesn't exist.
+</pre>
 
