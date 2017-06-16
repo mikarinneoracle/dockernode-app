@@ -15,7 +15,18 @@ Once this image is built we can then use is as the box for the Wercker workflow.
 
 Each Wercker workflow needs a `Wercker.yml` that defines the steps for it. In our sample Node.js application the <a href="https://github.com/oracle/docker-images/blob/master/ContainerCloud/images/rolling-router-sticky-sessions/wercker.yml">Wercker.yml file looks like this<a>.
 
-Here, the Wercker.yml consists of two `pipelines` named as `build` and `deploy`.
+Here, the Wercker.yml consists of box definition and then two `pipelines` named as `build` and `deploy`.
+
+The box definition is based on our application image:
+
+<pre>
+box:
+    id: $DOCKER_REGISTRY/$IMAGE_NAME
+    tag: $APP_TAG
+    registry: https://registry.hub.docker.com
+</pre>
+
+The Docker Hub account is specified by the workflow `environment variables`. Here, what's new compared to the original Travis CI is the optional `$APP_TAG` that specifies the tag for our box appliaction. The default value for this is `latest`.
 
 The build pipeline is very simple consisting only of one `step`:
 
@@ -49,7 +60,7 @@ deploy:
 
 The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy for the Oracle Container Cloud service.
 
-The second step `internal/docker-push` pushes the built image to Docker-hub repository specified by the Workflow `environment variables`. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image.
+The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image.
 
 
 
