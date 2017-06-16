@@ -28,7 +28,7 @@ box:
 
 Here, the Docker box image e.g. `mikarinneoracle/dockernode` is specified by the workflow `environment variables` `$DOCKER_REGISTRY` and `$IMAGE_NAME`.
 
-What's new compared to the original Travis CI is the optional `$APP_TAG` environment variable that specifies the tag for our box application. The default value for this is `latest`. In our case we using `wercker` as a tag for the box image. In principle the variables are the same we used in the Travis CI.
+What's new compared to the original Travis CI is the optional `$APP_TAG` environment variable that specifies the tag for our box application. The default value for this is `latest`. In our case we are using value `wercker` as a tag for the box image. In principle the variables are the same we used in the Travis CI.
 
 The build pipeline is very simple consisting only of one `step`:
 
