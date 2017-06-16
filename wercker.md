@@ -77,7 +77,7 @@ The source code of the `run.sh` for the registry step is found in <a href="https
 
 ### Workflow in Wercker UI
 
-To run the workflow for the appliaction it should look like this having the build and deploy pipelines:
+To run the workflow for the application it should look like this having the build and deploy pipelines:
 
 ![Logo](workflow.png)
 
