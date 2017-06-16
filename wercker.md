@@ -10,4 +10,4 @@ our application and it's build and deploy process by Wercker.
 
 The first thing to do is to build our Node.js application image on top of the Ubuntu image using 
 <a href="https://github.com/mikarinneoracle/dockernode-app/blob/master/Dockerfile">this Dockerfile</a>.
-As you can see we are using Wercker's source directory <pre>/pipeline/source</pre> as the <pre>WORKDIR</pre>.
+As you can see we are using Wercker's source directory `/pipeline/source<` as the `WORKDIR`.
