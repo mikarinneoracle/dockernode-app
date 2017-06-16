@@ -88,4 +88,8 @@ After the workflow has been created and the wercker.yml added to the application
 
 ![Logo](deploy.png)
 
-After a succesful completition of the workflow a new image of the application with the $WERCKER_MAIN_PIPELINE_STARTED tag should be pushed to Docker-hub and deployed to the Oracle Container Cloud Service. If there was a previous candidate version of the application running in OCCS it should have also been deleted.
+After a succesful completition of the workflow a new image of the application with a timestamp tag should be pushed to Docker-hub and deployed to the Oracle Container Cloud Service. If there was a previous candidate version of the application running in OCCS it should have also been deleted.
+
+![Logo](docker-hub.png)
+
+
