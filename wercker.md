@@ -1,19 +1,23 @@
-## Rolling router sticky sessions with Wercker
+# Rolling router sticky sessions with Wercker
 
 Since the Oracle acquisition of <a href="http://www.wercker.com/">Wercker</a> we have moved the 
 <a href="https://gist.github.com/mikarinneoracle/5f1e513f2a856a3be86c31c3f0dcabe2#rolling-deployments">deployment process
 of the rolling router</a> from Travis CI to Wercker.
 
 The changes aren't big. The main difference is that whereas Travis CI uses the `Ubuntu` shell environment to build and deploy 
-the desired application Wercker uses any Docker image, called as base `box`, as the base image and environment for the build and deploy process. In Wercker this process is called as `workflow`. 
+the desired application Wercker uses any Docker image, called as base `box`, as the base image and environment for the build and deploy process for a Wercker `application`. In Wercker this process is called as `workflow`. 
 
-To support the utilities required by the original script like `curl`, `jq` and `recode` we've also chosen Ubuntu as the `box` for our application and it's workflow by Wercker.
+### Building the base box
+
+To support the utilities required by the original script like `curl`, `jq` and `recode` we've also chosen Ubuntu as the `box` for our Wercker application and it's workflow.
 
 The first thing to do is to build our sample Node.js application image on top of the Ubuntu image using 
 <a href="https://github.com/mikarinneoracle/dockernode-app/blob/master/Dockerfile">this Dockerfile</a>.
 Here, we are using Wercker's source directory `/pipeline/source` as the `WORKDIR`.
 
 Once this image is built we can then use it as the box for the Wercker workflow.
+
+### Creating the workflow and pipelines
 
 Each Wercker workflow needs a `Wercker.yml` that defines the steps for it. In our sample Node.js application the <a href="https://github.com/oracle/docker-images/blob/master/ContainerCloud/images/rolling-router-sticky-sessions/wercker.yml">Wercker.yml file looks like this<a>.
 
@@ -73,14 +77,15 @@ The source code of the `run.sh` for the registry step is found in <a href="https
 
 ### Workflow in Wercker UI
 
-To run the workflow it should look like this:
+To run the workflow for the appliaction it should look like this having the build and deploy pipelines:
 
 ![Logo](workflow.png)
 
 
+### Starting the workflow
 
+After the workflow has been created and the wercker.yml added to the application the workflow can be started by committing and pushing a change to it.  When the workflow has run succesfully the deploy pipeline result should look like this:
 
+![Logo](deploy.png)
 
-
-
-
+After a succesful completition of the workflow a new image of the application with the $WERCKER_MAIN_PIPELINE_STARTED tag should be pushed to Docker-hub and deployed to the Oracle Container Cloud Service. If there was a previous candidate version of the application running in OCCS it should have also been deleted.
