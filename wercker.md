@@ -17,7 +17,7 @@ Each Wercker workflow needs a `Wercker.yml` that defines the steps for it. In ou
 
 Here, the Wercker.yml consists of box definition and then two `pipelines` named as `build` and `deploy`.
 
-The box definition is based on our application image:
+The box definition is based on our Node.js application image that we just build on top of Ubuntu:
 
 <pre>
 box:
@@ -26,7 +26,9 @@ box:
     registry: https://registry.hub.docker.com
 </pre>
 
-The Docker Hub account is specified by the workflow `environment variables`. Here, what's new compared to the original Travis CI is the optional `$APP_TAG` that specifies the tag for our box appliaction. The default value for this is `latest`.
+Here, the Docker box image e.g. `mikarinneoracle/dockernode` is specified by the workflow `environment variables` $DOCKER_REGISTRY` and `$IMAGE_NAME`.
+
+What's new compared to the original Travis CI is the optional `$APP_TAG` environment variable that specifies the tag for our box application. The default value for this is `latest`.
 
 The build pipeline is very simple consisting only of one `step`:
 
