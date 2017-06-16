@@ -62,7 +62,7 @@ deploy:
 
 The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy to the Oracle Container Cloud service.
 
-The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the built image instead of the `$TRAVIS_BUILD_NUMBER`that we used in the Travis CI. That's the other change we have comparing Travis CI and Wercker workflow environment variables.
+The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the image being pushed instead of the `$TRAVIS_BUILD_NUMBER`that we used in the Travis CI. That's the other change we have between Travis CI and Wercker workflow environment variables.
 
 The final step of deploy pipeline, and the whole workflow, is the actual deploy to Oracle Container Cloud service.
 This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`.
