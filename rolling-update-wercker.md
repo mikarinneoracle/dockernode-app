@@ -26,8 +26,6 @@ Password:
 Login Succeeded
 </pre>
 
-Now that you have logged into Docker Hub in your terminal, change into the `stacks` directory and read the `README.md` document to buid your stacks.
-
 ### Configure the Builder to Use Your Docker Hub Account
 
 Before you can build your first stack, open [images/build/vars.mk](images/build/vars.mk) and set the registry name variable as your Docker Hub account (usernames should be entered in lower case):
