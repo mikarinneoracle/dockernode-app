@@ -2,7 +2,7 @@
 
 ## Deploy the rolling update sticky sessions service
 
-### Clone the https://github.com/oracle/docker-images repository
+### Clone the repository
 
 <pre>
 mkdir docker-images
