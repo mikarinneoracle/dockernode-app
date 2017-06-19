@@ -49,7 +49,7 @@ This will upload the image to your Docker-hub.
 
 ### Create the OCCS service
 
-Login to OCCS and create a new service `rolling-router-sticky-sessions` with the following YML where the image repository refers to your Docker-hub account: 
+Login to OCCS and create a new service `rolling-router-sticky-sessions` with the following YML where the image repository refers to your Docker-hub account (bolded): 
 
 <pre>
 version: 2
@@ -69,6 +69,8 @@ services:
 </pre>
 
 If you haven't build the image of your own, you can use the YML above as is.
+
+Then deploy the service.
 
 
 
