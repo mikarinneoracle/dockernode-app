@@ -70,7 +70,7 @@ services:
 
 If you haven't build the image of your own, you can use the YML above as is.
 
-Then deploy the service.
+Deploy the service.
 
 ## Deploy the rolling router sticky sessions keyvalues with the GUI
 
@@ -78,7 +78,21 @@ Check the worker host `public_ip` from the OCCS admin:
 
 ![Logo](occs-host-ip.png)
 
-Then, from your browser open the URL pointing to the address above e.g. `http://140.86.1.96:8080`.
+Check also the `API token` a.k.a Bearer from Settings/My Account:
+
+![Logo](occs-bearer.png)
+
+From your browser open the URL pointing to the address above e.g. `http://140.86.1.96:8080`.
+
+The rolling router sticky sessions GUI should show up with a setup screen.
+
+Enter the OCCS admin host ip, API Token (Bearer), Application name `docker-hello-world` and the preferred `host port` of the Docker application e.g. 3000
+
+
+
+
+
+
 
 
 
