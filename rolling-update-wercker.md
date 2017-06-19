@@ -43,7 +43,34 @@ cd images/rolling-router-sticky-sessions
 make
 </pre>
 
+This will upload the image to your Docker-hub.
+
 ![Logo](docker-hub-rolling-router.png)
+
+### Create the OCCS service
+
+Login to OCCS and create a new service `roling-router-sticky-sessions` with the following YML where the image repository refers to your Docker-hub account: 
+
+<pre>
+version: 2
+services:
+  roling-router-sticky:
+    image: 'mikarinneoracle/rolling-router-sticky-sessions:0.2'
+    environment:
+      - 'OCCS_API_TOKEN={{api_token}}'
+      - KV_IP=172.17.0.1
+      - KV_PORT=9109
+      - APP_NAME=docker-hello-world
+      - 'occs:availability=per-pool'
+      - 'occs:scheduler=random'
+    ports:
+      - '80:80/tcp'
+      - '8080:8080/tcp'
+</pre>
+
+If you haven't build the image of your own, you can use the YML above as is.
+
+
 
 
 
