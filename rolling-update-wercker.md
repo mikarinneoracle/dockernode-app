@@ -86,7 +86,9 @@ From your browser open the URL pointing to the worker host public_ip address e.g
 
 The rolling router sticky sessions GUI should show up with a setup screen.
 
-Enter the OCCS admin host ip, API Token (Bearer), Application name `docker-hello-world` and the preferred `host port` of the Docker application e.g. 3000
+Enter the OCCS admin host ip, API Token (Bearer), Application name `docker-hello-world` and the preferred `host port` of the Docker application e.g. 3000:
+
+![Logo](rolling-router-ss-login.png)
 
 
 
