@@ -90,8 +90,9 @@ Enter the OCCS admin host ip, API Token (Bearer), Application name `docker-hello
 
 ![Logo](rolling-router-ss-login.png)
 
+Press OK. The following screen should show up if the login with given OCCS admin IP and API tokn was succesful:
 
-
+![Logo](rolling-router-ss-create-keyvalues.png)
 
 
 
