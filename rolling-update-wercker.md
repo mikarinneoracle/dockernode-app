@@ -4,9 +4,9 @@
 
 ### Build the image 
 
-Before building the `rolling-router-sticky-sessions` edit the file `.images/build/vars.mk` to set the name of your Docker-hub account to `REGISTRY_NAME`.
+Before building the `rolling-router-sticky-sessions` image edit the file `.images/build/vars.mk` and set the value `REGISTRY_NAME` to match your Docker-hub account.
 
-The run the make.
+The run `make`.
 
 <pre>
 cd ./images/rolling-router-sticky-sessions
