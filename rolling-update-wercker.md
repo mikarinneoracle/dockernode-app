@@ -43,6 +43,10 @@ cd images/rolling-router-sticky-sessions
 make
 </pre>
 
+![Logo](docker-hub-rolling-router.png)
+
+
+
 
 
 
