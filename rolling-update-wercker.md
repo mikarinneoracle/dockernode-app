@@ -54,7 +54,7 @@ Login to OCCS and create a new service `rolling-router-sticky-sessions` with the
 <pre>
 version: 2
 services:
-  rolling-router-sticky:
+  rolling-router-sticky-sessions:
     image: '<b>mikarinneoracle</b>/rolling-router-sticky-sessions:0.2'
     environment:
       - 'OCCS_API_TOKEN={{api_token}}'
