@@ -74,7 +74,13 @@ Then deploy the service.
 
 ## Deploy the rolling router sticky sessions keyvalues with the GUI
 
-From your browser open the URL `http://<OCCS worker host>:8080`.
+Check the worker host ip from the OCCS admin:
+
+![Logo](occs-host-ip.png)
+
+Then, from your browser open the URL pointing to the address above e.g. `http://http://140.86.1.96:8080`.
+
+
 
 
 
