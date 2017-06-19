@@ -82,7 +82,7 @@ Check also the `API token` a.k.a Bearer from Settings/My Account:
 
 ![Logo](occs-bearer.png)
 
-From your browser open the URL pointing to the address above e.g. `http://140.86.1.96:8080`.
+From your browser open the URL pointing to the worker host public_ip address e.g. `http://140.86.1.96:8080`.
 
 The rolling router sticky sessions GUI should show up with a setup screen.
 
