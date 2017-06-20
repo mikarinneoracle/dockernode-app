@@ -231,15 +231,44 @@ Looking from the deploy step `ORACLE-OCCS-rolling-router-deploy` you can see the
 
 ![Logo](Wercker-1st-time-deploy-error-output.png)
 
-However, the Hello world application candidate image was built with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushed to Docker hub:
+This is normal and we can ignore this.
+
+We can see that the Hello world application candidate image was built with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushed to Docker hub by the workflow:
 
 ![Logo](docker-hub-candidate-built.png)
 
-It was also deployed to OCCS and the Rolling router sticky sessions GUI was updated to reflect the keyvalue change in OCCS for the application candidate:
+The new image was also deployed to OCCS and the candidate image of the Hello world application should be running:
 
 ![Logo](occs-candidate-deployed.png)
 
+The Rolling router sticky sessions GUI was updated to reflect the keyvalue change in OCCS for the application candidate:
+
 ![Logo](rolling-router-ss-candidate-deployed.png)
+
+### Promoting the candidate image and calling the application from browser
+
+Promote the candidate to `stable`by clicking promote button in the Rolling router sticky sessions GUI. The result shoulb be that stable version is now the image that was just built by Wercker and the candidate is rolling/null:
+
+![Logo](rolling-router-ss-candidate-promoted.png)
+
+Now you can open a new tab to your browser and call the application by opening the URL pointing to the worker host public_ip address e.g. `http://140.86.1.96`.
+
+![Logo](rolling-router-stable-running.png)
+
+(The backgroud color and text can be slightly different)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
