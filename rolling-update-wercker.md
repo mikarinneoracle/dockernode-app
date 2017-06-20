@@ -322,9 +322,9 @@ So far you have not played with the session stickiness (a.k.a affinity) yet.
 
 This is easy to do just setting the stickyness to true:
 
-![Logo](rolling-router-ss-stable-set-stickiness.png)
-
 ![Logo](rolling-router-ss-stable-set-stickiness-true.png)
+
+![Logo](rolling-router-ss-stable-set-stickiness.png)
 
 Now every subsequent request from the <i>same</i> client i.e. browser should go to the same application version, either stable or candidate, depending on which one it reached initially (based on the blend %). This means it should keep the session affinity and the user should experince the same version of the application all the time.
 
@@ -334,32 +334,58 @@ As this maybe a bit harder to test without a load testing application you can st
 
 In real life appliaction testing the session stickyness is important for the users to see a consistent user experience in case of web applications. In microservices testing, however, the session affinity has less value and can be set to false.
 
+## Wercker.yaml and the Wercker registry step
 
+The Wercker step used for the OCCS deploy can be found at <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> and you can use it in you own deployments as well:
 
+![Logo](Wercker-registry-step-OCCS.png)
 
+The source code for it can be found here: <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy</a>. It contains the `run.sh`and the `Wercker-step.yml` definition file.
 
+The <a href="https://github.com/mikarinneoracle/hello-world/blob/master/wercker.yml">Wercker.yml</a> is included in the Hello world application. It consists of the box definition and then two pipelines named as `build` and `deploy`.
 
+The box definition is based on our Node.js application image that was built on top of Ubuntu:
 
+<pre>
+box:
+    id: $DOCKER_REGISTRY/$IMAGE_NAME
+    tag: $APP_TAG
+    registry: https://registry.hub.docker.com
+</pre>
 
+The build pipeline is very simple consisting only of one step:
 
+<pre>
+build:
+  steps:
+    - npm-install
+</pre>
 
+The deploy pipeline that is executed after a succesful build pipeline is a bit more complex having three steps:
 
+<pre>
+deploy:
+  steps:
+    - script:
+        name: check
+        code: |
+            npm --version
+            node --version
+            jq --version
+            curl --version
+            recode --version
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        tag: $WERCKER_MAIN_PIPELINE_STARTED
+        repository: $DOCKER_REGISTRY/$IMAGE_NAME
+        registry: https://registry.hub.docker.com
+    - mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.1.0
+</pre>
 
+The first step `check` is just to verify we have built our box from a correct image having the required utlities available for the actual deploy to Oracle Container Cloud service.
 
+The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the image being pushed.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The final step of deploy pipeline, and the whole workflow, is the actual deploy to Oracle Container Cloud service.
+This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`.
