@@ -253,6 +253,8 @@ Now you can open a new tab to your browser and call the stable version of applic
 
 (The backgroud color and text can be slightly different)
 
+You can reload the page few times to see it is responding.
+
 ### Building a new candidate
 
 Make a chance to the Hello world `index.html` with a an editor like changing the background color to green and version to 1.0.1. Commit the change and push the change to the repository:
@@ -263,7 +265,7 @@ git commit -m 'v.1.0.1'
 git push origin master
 </pre>
 
-Wercker should pick up this change automatically and the workflow starts for a new candidate verision of Hello world.
+Wercker should pick up this change automatically and the workflow starts for a new candidate version of Hello world.
 
 ![Logo](Wercker-candidate-build.png)
 
@@ -277,7 +279,23 @@ It should be also deployed and started in OCCS now both the stable and candidate
 
 The rolling router sticky sessions GUI should now be updated with the candidate to reflect the change in the OCCS keyvalue for the application candidate:
 
-![Logo](rolling-router-ss-candidate-running.png)
+![Logo](rolling-router-ss-stable-and-candidate-running-blend-0.png)
+
+### Sending load to the candidate version
+
+Since both versions are now running we can test the candidate version by sending load to it. 
+To do this adjust the blend % to 50:  
+
+![Logo](rolling-router-ss-stable-and-candidate-running-blend-50.png)
+
+Now every other request to the worker host public_ip address e.g. http://140.86.1.96 should go to the candidate version:
+
+![Logo](rolling-router-ss-stable-and-candidate-running-blend-50.png)
+
+Keep on reloading the page to see the behaviour. You can also try setting the blend percent to 100 for example, the all the requests should go to the candidate.
+
+#### Rebuilding a new candidate version
+
 
 
 
