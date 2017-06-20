@@ -201,7 +201,7 @@ Add it to the workflow after the build step:
 
 The YML pipeline names are identical to pipeline names.
 
-### Creating Wercker global enviroment values for the Workflow
+### Creating Wercker application environment values for the Workflow
 
 Create the following application environment values for the Wercker workflow:
 
