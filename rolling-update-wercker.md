@@ -116,7 +116,7 @@ Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses util
 
 First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world appliucation image for the rolling router sticky sessions deployment.
 
-Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project using the branch `dist` and tag `trusty` with the following additions to enable the utilities along with Node.js in the Ubuntu image:
+Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project with the following additions to enable the utilities along with Node.js in the Ubuntu image:
 
 <pre>
 RUN sudo apt-get -y install libc-dev-bin libc6 libc6-dev
@@ -128,7 +128,8 @@ RUN sudo apt-get install -y nodejs
 RUN sudo apt-get install -y build-essential
 </pre>
 
-You can clone the project and build the image and push it Docker hub (change the repository bolded to match your Docker hub account):
+You can clone the project and build the image and push it Docker hub (change the repository bolded to match your Docker hub account) using the branch `dist` and the version `trusty`:
+
 <pre>
 mkdir ubuntu
 git clone git@github.com:mikarinneoracle/docker-brew-ubuntu-core.git ubuntu
@@ -165,7 +166,7 @@ EXPOSE 3000
 CMD [ "npm", "start" ]
 </pre>
 
-You can clone the project from tag `Node.js` and then build and push the image to Docker hub (change the repository bolded to match your Docker hub account):
+You can clone the project and then build and push the image to Docker hub (change the repository bolded to match your Docker hub account) using the `Node.js` branch:
 
 <pre>
 mkdir hello-world
