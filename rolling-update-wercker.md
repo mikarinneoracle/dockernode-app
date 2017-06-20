@@ -106,11 +106,36 @@ This will store the values in OCCS keyvalues for the hello world application in 
 
 ![Logo](occs-keyvalues.png)
 
+## Setting up Wercker CI/CD
 
+### Building the hello world application base box image for Wercker
 
+Since our rolling router sticky sessions CI/CD for OCCS script uses utilities like `jq`, `recode` and `curl` we first we have selected `Ubuntu`as the base image for our hello world `Node.js` application. 
 
+First we are building Ubuntu image with the utilities included from `scratch` and then using the Ubuntu image we build the hello world appliucation image for the rolling router sticky sessions deployment.
 
+Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project with the following additions to enable the utilities with Node.js in the Ubuntu image:
 
+<pre>
+RUN sudo apt-get -y install libc-dev-bin libc6 libc6-dev
+RUN sudo apt-get install -y recode
+RUN sudo apt-get install -y jq
+RUN sudo apt-get install -y curl
+RUN sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo apt-get install -y build-essential
+</pre>
+
+Build the image and push it Docker hub:
+<pre>
+export tag=$(docker build -t ubuntu . | grep 'Successfully built' | tail -c 13)
+docker tag $tag mikarinneoracle/ubuntu:trusty
+docker push mikarinneoracle/ubuntu
+</pre>
+
+After build the image is pushed to Docker hub:
+
+![Logo](docker-hub-ubuntu-trusty.png)
 
 
 
