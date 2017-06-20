@@ -180,7 +180,13 @@ docker push mikarinneoracle/hello-world
 
 ![Logo](docker-hub-hello-world.png)
 
+### Creating the Wercker workflow 
 
+Login to your Wercker account and create a Wercker project for the Hello World Node.js application that we just built.
+
+Then create a Wercker `workflow` with two steps `build` (the default) and ` deploy`:
+
+![Logo](Wercker-workflow.png)
 
 
 
