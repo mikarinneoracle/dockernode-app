@@ -290,7 +290,7 @@ To do this adjust the blend % to 50:
 
 Now every other request to the worker host public_ip address e.g. http://140.86.1.96 should go to the candidate version:
 
-![Logo](rolling-router-ss-stable-and-candidate-running-blend-50.png)
+![Logo](rolling-router-ss-candidate-running.png)
 
 Keep on reloading the page to see the behaviour. You can also try setting the blend percent to 100 for example, the all the requests should go to the candidate.
 
