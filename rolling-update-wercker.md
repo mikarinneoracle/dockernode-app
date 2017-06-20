@@ -223,7 +223,13 @@ After setting the application environment variables you can start the first buil
 
 ![Logo](Wercker-initial-build.png)
 
-Workflow builds a Hello world application candidate image with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushes to Docker hub by the workflow:
+Workflow starts and runs the workflow:
+
+![Logo](Wercker-deploy.png)
+
+![Logo](Wercker-deploy-details.png)
+
+Hello world application candidate image with a `timestamp` tag (i.e. the Wercker environment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) was created and pushed to Docker hub:
 
 ![Logo](docker-hub-candidate-built.png)
 
@@ -243,7 +249,7 @@ Promote the candidate to `stable`by clicking promote button in the Rolling route
 
 Now you can open a new tab to your browser and call the stable version of application by opening the URL pointing to the worker host public_ip address e.g. `http://140.86.1.96`.
 
-![Logo](rolling-router-stable-running.png)
+![Logo](rolling-router-ss-stable-running.png)
 
 (The backgroud color and text can be slightly different)
 
@@ -258,7 +264,6 @@ git push origin master
 </pre>
 
 Wercker should pick up this change automatically and the workflow starts for a new candidate verision of Hello world.
-The build should now complete without errors:
 
 ![Logo](Wercker-candidate-build.png)
 
@@ -266,7 +271,18 @@ A new candidate image with a new tag should be uploaded to Docker hub:
 
 ![Logo](docker-hub-new-candidate.png)
 
-It should be also deployed and started in OCCS:
+It should be also deployed and started in OCCS now both the stable and candidate running:
+
+![Logo](occs-stable-and-candidate-deployed.png)
+
+The rolling router sticky sessions GUI should now be updated with the candidate to reflect the change in the OCCS keyvalue for the application candidate:
+
+![Logo](rolling-router-ss-candidate-running.png)
+
+
+
+
+
 
 
 
