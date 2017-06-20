@@ -245,17 +245,23 @@ The Rolling router sticky sessions GUI was updated to reflect the keyvalue chang
 
 ![Logo](rolling-router-ss-candidate-deployed.png)
 
-### Promoting the candidate image and calling the application from browser
+### Promoting the candidate image and calling the stable application from browser
 
 Promote the candidate to `stable`by clicking promote button in the Rolling router sticky sessions GUI. The result shoulb be that stable version is now the image that was just built by Wercker and the candidate is rolling/null:
 
 ![Logo](rolling-router-ss-candidate-promoted.png)
 
-Now you can open a new tab to your browser and call the application by opening the URL pointing to the worker host public_ip address e.g. `http://140.86.1.96`.
+Now you can open a new tab to your browser and call the stable version of application by opening the URL pointing to the worker host public_ip address e.g. `http://140.86.1.96`.
 
 ![Logo](rolling-router-stable-running.png)
 
 (The backgroud color and text can be slightly different)
+
+### Building a new candidate
+
+Before building a new candidate of the application, set the candidate version to avoid the error in the deployment again. Note that at this point we are not yet directing any requests to the candidate as the `blend %`is still set to zero.
+
+![Logo](Wercker-candidate-build-preset.png)
 
 
 
