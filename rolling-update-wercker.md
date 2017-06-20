@@ -209,10 +209,10 @@ Create the following application environment values for the Wercker workflow:
   DOCKER_PASSWORD:    Docker hub account password
   DOCKER_REGISTRY:    Docker hub registry; typically the same as the username e.g. mikarinneoracle 
   EXPOSED_PORT:       Hello world application host port e.g. 3000
-  SCALE_AMOUNT:       OCCS scale amount e.g. 1
-  DOCKER_CMD:         OCCS image command e.g. npm start (for Node.js) 
   IMAGE_NAME:         Wercker.yml box name e.g. hello-world
   APP_TAG:            Wercker.yml box tag e.g. latest
+  SCALE_AMOUNT:       OCCS scale amount e.g. 1
+  DOCKER_CMD:         OCCS image command e.g. npm start (for Node.js) 
 </pre>
 
 ![Logo](Wercker-app-env-variables.png)
@@ -222,6 +222,32 @@ Create the following application environment values for the Wercker workflow:
 After setting the application environment variables you can start the first build by clicking the ` trigger a build now` link as below:
 
 ![Logo](Wercker-initial-build.png)
+
+For the first time the workflow appears to be failing but this is just because the `candidate version` of the OCCS keyvalue is `rolling/null`.
+
+![Logo](Wercker-1st-time-deploy-error.png)
+
+Looking from the deploy step `ORACLE-OCCS-rolling-router-deploy` you can see the output:
+
+![Logo](Wercker-1st-time-deploy-error-output.png)
+
+However, the Hello world application candidate image was built with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushed to Docker hub:
+
+![Logo](docker-hub-candidate-built.png)
+
+It was also deployed to OCCS and the Rolling router sticky sessions GUI was updated to reflect the keyvalue change in OCCS for the application candidate:
+
+![Logo](occs-candidate-deployed.png)
+
+![Logo](rolling-router-ss-candidate-deployed.png)
+
+
+
+
+
+
+
+
 
 
 
