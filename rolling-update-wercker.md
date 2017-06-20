@@ -188,7 +188,27 @@ Then create a Wercker `workflow` with two steps `build` (the default) and `deplo
 
 ![Logo](Wercker-workflow.png)
 
+The YML pipeline names are identical to pipeline names.
 
+### Creating Wercker global enviroment values for the Workflow
+
+Create the following environment values for the Wercker workflow:
+
+<pre>
+  SERVICE_MANAGER:    OCCS admin url e.g. https://140.86.1.162
+  API_TOKEN:          OCCS API token (bearer)
+  APP_NAME:           docker-hello-world 
+  APP_FRIENDLY_NAME:  Hello-world  
+  DOCKER_EMAIL:       Docker hub account email
+  DOCKER_USERNAME:    Docker hub account username
+  DOCKER_PASSWORD:    Docker hub account password
+  DOCKER_REGISTRY:    Docker hub registry; typically the same as the username e.g. mikarinneoracle 
+  EXPOSED_PORT:       Hello world application host port 3000
+  SCALE_AMOUNT:       OCCS scale amount; optional; default 1 
+  DOCKER_CMD:         OCCS image command; optional; default npm start (for Node.js) 
+  IMAGE_NAME:         Wercker.yml box name e.g. hello-world
+  APP_TAG:            Wercker.yml box tag; optional; default latest         
+</pre>
 
 
 
