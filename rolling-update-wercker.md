@@ -215,6 +215,16 @@ Create the following application environment values for the Wercker workflow:
   APP_TAG:            Wercker.yml box tag; optional; default latest         
 </pre>
 
+![Logo](Wercker-app-env-variables.png)
+
+### Launch the initial build with the workflow
+
+After setting the application environment variables you can start the first build by clicking the ` trigger a build now` link as below:
+
+![Logo](Wercker-initial-build.png)
+
+
+
 
 
 
