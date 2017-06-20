@@ -110,7 +110,7 @@ This will store the values in OCCS keyvalues for the hello world application in 
 
 If you have already created the keyvalues either manually or using the rolling router sticky sessions GUI, you don't have to specify the port in the login. Then, after clicking the login/setup OK button the GUI will find the keyvalues automatically (given the login was succesful). The port discovered will be shown along with application name on the page.
 
-Also, if the keyvalues are changed in the OCCS using the admin or the REST API the the GUI will detect the changes automatically after a short delay.
+Also, if the keyvalues are changed in the OCCS using the admin or the REST API the GUI will detect the changes automatically after a short delay of max. 10 seconds.
 
 ## Setting up Wercker CI/CD
 
