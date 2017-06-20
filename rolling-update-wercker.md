@@ -208,11 +208,11 @@ Create the following application environment values for the Wercker workflow:
   DOCKER_USERNAME:    Docker hub account username
   DOCKER_PASSWORD:    Docker hub account password
   DOCKER_REGISTRY:    Docker hub registry; typically the same as the username e.g. mikarinneoracle 
-  EXPOSED_PORT:       Hello world application host port 3000
-  SCALE_AMOUNT:       OCCS scale amount; optional; default 1 
-  DOCKER_CMD:         OCCS image command; optional; default npm start (for Node.js) 
+  EXPOSED_PORT:       Hello world application host port e.g. 3000
+  SCALE_AMOUNT:       OCCS scale amount e.g. 1
+  DOCKER_CMD:         OCCS image command e.g. npm start (for Node.js) 
   IMAGE_NAME:         Wercker.yml box name e.g. hello-world
-  APP_TAG:            Wercker.yml box tag e.g. latest        
+  APP_TAG:            Wercker.yml box tag e.g. latest
 </pre>
 
 ![Logo](Wercker-app-env-variables.png)
