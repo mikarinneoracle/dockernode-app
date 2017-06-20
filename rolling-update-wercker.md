@@ -110,11 +110,13 @@ This will store the values in OCCS keyvalues for the hello world application in 
 
 ### Building the hello world application base box image for Wercker
 
-Since our rolling router sticky sessions CI/CD for OCCS script uses utilities like `jq`, `recode` and `curl` we first we have selected `Ubuntu`as the base image for our hello world `Node.js` application. 
+Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses utilities like `jq`, `recode` and `curl` we have selected `Ubuntu`as the base image for our hello world `Node.js` application. 
 
-First we are building Ubuntu image with the utilities included from `scratch` and then using the Ubuntu image we build the hello world appliucation image for the rolling router sticky sessions deployment.
+#### Build Ubunty with Node.js and required utilities
 
-Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project with the following additions to enable the utilities with Node.js in the Ubuntu image:
+First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world appliucation image for the rolling router sticky sessions deployment.
+
+Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project using the branch `dist` and tag `trusty` with the following additions to enable the utilities along with Node.js in the Ubuntu image:
 
 <pre>
 RUN sudo apt-get -y install libc-dev-bin libc6 libc6-dev
@@ -133,9 +135,33 @@ docker tag $tag mikarinneoracle/ubuntu:trusty
 docker push mikarinneoracle/ubuntu
 </pre>
 
-After build the image is pushed to Docker hub:
-
 ![Logo](docker-hub-ubuntu-trusty.png)
+
+#### Build the Hello World application image
+
+Using the custom built Ubunty image build the Node.js Hello world application. 
+The <a href="https://github.com/mikarinneoracle/hello-world/tree/Node.js">source code</a> includes a Dockerfile with the following:
+
+<pre>
+FROM mikarinneoracle/ubuntu:trusty
+
+# Create app directory; same as Wercker default
+RUN mkdir -p /pipeline/source
+WORKDIR /pipeline/source
+
+# Install app dependencies
+COPY package.json /pipeline/source/
+RUN npm install
+
+# Bundle app source
+COPY . /pipeline/source/
+
+EXPOSE 3000
+CMD [ "npm", "start" ]
+</pre>
+
+
+
 
 
 
