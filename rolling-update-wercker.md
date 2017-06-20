@@ -94,6 +94,19 @@ Press OK. The following screen should show up if the login with given OCCS admin
 
 ![Logo](rolling-router-ss-create-keyvalues.png)
 
+Let's create the initial keyvalues for the hello world application deployment by selecting the following values from the dropdowns:
+
+![Logo](rolling-router-ss-set-keyvalues.png)
+
+Set the values like this:
+
+![Logo](rolling-router-ss-keyvalues-set.png)
+
+This will store the values in OCCS keyvalues for the hello world application in host port 3000:
+
+![Logo](rolling-router-ss-occs-keyvalues.png)
+
+
 
 
 
