@@ -332,15 +332,9 @@ When the session stickyness is set to false, the client will be served from the 
 
 As this maybe a bit harder to test without a load testing application you can still try opening multiple browsers to make requests to the application when session stickiness is set to true to experience this behaviour.
 
-In real life appliaction testing the session stickyness is important for the users to see a consistent user experience in case of web applications. In microservices testing, however, the session affinity has less value and can be set to false.
+In real life application testing the session stickyness is important for the users to see a consistent user experience in case of web applications. In microservices testing, however, the session affinity has less value and can be set to false.
 
 ## Wercker.yaml and the Wercker registry step
-
-The Wercker step used for the OCCS deploy can be found at <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> and you can use it in you own deployments as well:
-
-![Logo](Wercker-registry-step-OCCS.png)
-
-The source code for it can be found here: <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy</a> and contains the `run.sh`and the `Wercker-step.yml` definition file.
 
 The <a href="https://github.com/mikarinneoracle/hello-world/blob/master/wercker.yml">Wercker.yml</a> is included in the Hello world application. It consists of the box definition and then two pipelines named as `build` and `deploy`.
 
@@ -388,4 +382,8 @@ The first step `check` is just to verify we have built our box from a correct im
 The second step `internal/docker-push` pushes the built image to Docker-hub repository. Here, we are using `$WERCKER_MAIN_PIPELINE_STARTED` timestamp as the tag for the image being pushed.
 
 The final step of deploy pipeline, and the whole workflow, is the actual deploy to Oracle Container Cloud service.
-This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`.
+This is done as a `registry step`that is found in the <a href="https://app.wercker.com/search/steps/oracle">Wercker registry</a> with a name `mikarinneoracle/ORACLE-OCCS-rolling-router-deploy@1.0.0`:
+
+![Logo](Wercker-registry-step-OCCS.png)
+
+The source code for it can be found here: <a href="https://github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy">github.com/mikarinneoracle/ORACLE-OCCS-rolling-router-deploy</a> and contains the `run.sh`and the `Wercker-step.yml` definition file.
