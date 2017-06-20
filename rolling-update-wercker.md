@@ -90,11 +90,15 @@ Enter the OCCS admin host ip, API Token (Bearer), Application name `docker-hello
 
 ![Logo](rolling-router-ss-login.png)
 
-Press OK. The following screen should show up if the login with given OCCS admin IP and API token was succesful:
+Press OK. The following screen should show up if the login with the given OCCS admin IP and API token was succesful:
 
 ![Logo](rolling-router-ss-create-keyvalues.png)
 
-Let's create the initial keyvalues for the hello world application deployment by selecting the following values from the dropdowns:
+If the login was unsuccesful the following error should show up:
+
+![Logo](rolling-router-ss-login-error.png)
+
+Create the initial keyvalues for the hello world application deployment by selecting the following values from the dropdowns:
 
 ![Logo](rolling-router-ss-set-keyvalues.png)
 
