@@ -259,9 +259,26 @@ Now you can open a new tab to your browser and call the stable version of applic
 
 ### Building a new candidate
 
-Before building a new candidate of the application, set the candidate version to avoid the error in the deployment again. Note that at this point we are not yet directing any requests to the candidate as the `blend %`is still set to zero.
+Make a chance to the Hello world `index.html` with a an editor like changing the background color to green and version to 1.0.1. Commit the change and push the change to the repository:
 
-![Logo](Wercker-candidate-build-preset.png)
+<pre>
+git add index.html
+git commit -m 'v.1.0.1'
+git push origin master
+</pre>
+
+Wercker should pick up this change automatically and the workflow starts for a new candidate verision of Hello world.
+The build should now complete without errors:
+
+![Logo](Wercker-candidate-build.png)
+
+A new candidate image with a new tag should be uploaded to Docker hub:
+
+![Logo](docker-hub-new-candidate.png)
+
+It should be also deployed and started in OCCS:
+
+
 
 
 
