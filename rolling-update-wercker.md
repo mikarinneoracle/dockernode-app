@@ -114,13 +114,13 @@ Also, if the keyvalues are changed in the OCCS using the admin or the REST API t
 
 ## Setting up Wercker CI/CD
 
-### Building the hello world application base box image for Wercker
+### Building the Hello world application base box image for Wercker
 
-Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses utilities like `jq`, `recode` and `curl` we have selected `Ubuntu`as the base image for our hello world `Node.js` application. 
+Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses utilities like `jq`, `recode` and `curl` we have selected `Ubuntu`as the base image for our Hello world `Node.js` application. 
 
 #### Build Ubuntu with Node.js and required utilities
 
-First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world application image for the rolling router sticky sessions deployment.
+First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual Hello world application image for the rolling router sticky sessions deployment.
 
 Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project with the following additions to enable the utilities along with Node.js in the Ubuntu image:
 
@@ -187,7 +187,7 @@ docker push mikarinneoracle/hello-world
 
 ### Creating the Wercker workflow 
 
-Login to your Wercker account and create a Wercker `application` Hello World for the Node.js application that we just built.
+Login to your Wercker account and create a Wercker `application` Hello world for the Node.js application that we just built.
 
 Then create a Wercker `workflow` with two steps `build` (the default) and `deploy`.
 
