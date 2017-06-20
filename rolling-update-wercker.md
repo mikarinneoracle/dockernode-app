@@ -292,9 +292,46 @@ Now every other request to the worker host public_ip address e.g. http://140.86.
 
 ![Logo](rolling-router-ss-candidate-running.png)
 
-Keep on reloading the page to see the behaviour. You can also try setting the blend percent to 100 for example, the all the requests should go to the candidate.
+Keep on reloading the page to see the behaviour. You can also try setting the blend percent to 100 for example, then all requests should go to the candidate.
 
 #### Rebuilding a new candidate version
+
+Since the CI/CD pipeline is now working it is easy to build new versions of the candidate. Just make another change to the index.html like setting the background color to orange and then commit and push your change.
+
+Again, the new Hello world application image gets built and uploaded to Docker hub with a tag. The existing candidate should be replaced by the new candidate in the OCCS:
+
+![Logo](occs-candidate-rebuild-deployed.png)
+
+And the new candidate should also be updated in the rolling router sticky sessions GUI with the blend % zero:
+
+![Logo](rolling-router-ss-stable-and-candidate-rebuild-running-blend-0.png)
+
+You can now increase the blend % and realod your application page a few times depending on blend %. A new version should show up eventually:
+
+![Logo](occs-candidate-rebuild-running.png)
+
+#### Promoting a new candidate as stable
+
+At any point you can promote the candidate as stable. Then the blend goes to zero and the rolling router sticky sessions send only requests to the stable version. Then, you can deploy a new candidate making a change and pushing it to the repository and the process for the candidate starts again as seen earlier.
+
+You also play with the stable and candidate values by selecting them from the dropdows of the GUI to see the effect when reloading the application page. There a short delay while the rolling router sticky sessions configuration is loaded after changing the values. If reloading the application page too fast you might experience a server error. In that case just reload the page.
+
+### Session stickyness between stable and candidate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
