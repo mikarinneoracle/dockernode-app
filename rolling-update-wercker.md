@@ -212,7 +212,7 @@ Create the following application environment values for the Wercker workflow:
   SCALE_AMOUNT:       OCCS scale amount; optional; default 1 
   DOCKER_CMD:         OCCS image command; optional; default npm start (for Node.js) 
   IMAGE_NAME:         Wercker.yml box name e.g. hello-world
-  APP_TAG:            Wercker.yml box tag; optional; default latest         
+  APP_TAG:            Wercker.yml box tag e.g. latest        
 </pre>
 
 ![Logo](Wercker-app-env-variables.png)
