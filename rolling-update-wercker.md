@@ -128,10 +128,15 @@ RUN sudo apt-get install -y nodejs
 RUN sudo apt-get install -y build-essential
 </pre>
 
-Build the image and push it Docker hub:
+You can clone the project and build the image and push it Docker hub (change the repository bolded to match your Docker hub account):
 <pre>
+mkdir ubuntu
+git clone git@github.com:mikarinneoracle/docker-brew-ubuntu-core.git ubuntu
+cd ubuntu
+git checkout dist
+cd trusty
 export tag=$(docker build -t ubuntu . | grep 'Successfully built' | tail -c 13)
-docker tag $tag mikarinneoracle/ubuntu:trusty
+docker tag $tag <b>mikarinneoracle</b>/ubuntu:trusty
 docker push mikarinneoracle/ubuntu
 </pre>
 
@@ -160,6 +165,19 @@ EXPOSE 3000
 CMD [ "npm", "start" ]
 </pre>
 
+You can clone the project from tag `Node.js` and then build and push the image to Docker hub (change the repository bolded to match your Docker hub account):
+
+<pre>
+mkdir hello-world
+git clone git@github.com:mikarinneoracle/hello-world.git hello-world
+cd hello-world
+git checkout Node.js
+export tag=$(docker build -t hello-world . | grep 'Successfully built' | tail -c 13)
+docker tag $tag <b>mikarinneoracle</b>/hello-world:latest
+docker push mikarinneoracle/hello-world
+</pre>
+
+![Logo](docker-hub-hello-world.png)
 
 
 
