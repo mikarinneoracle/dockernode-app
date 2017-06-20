@@ -120,7 +120,7 @@ Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses util
 
 #### Build Ubunty with Node.js and required utilities
 
-First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world appliucation image for the rolling router sticky sessions deployment.
+First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world application image for the rolling router sticky sessions deployment.
 
 Here's the <a href="https://github.com/mikarinneoracle/docker-brew-ubuntu-core/blob/dist/trusty/Dockerfile#L50">Dockerfile</a> for the forked Ubuntu project with the following additions to enable the utilities along with Node.js in the Ubuntu image:
 
