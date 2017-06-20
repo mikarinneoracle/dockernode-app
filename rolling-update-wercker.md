@@ -243,7 +243,7 @@ The Rolling router sticky sessions GUI was updated to reflect the keyvalue chang
 
 ### Promoting the candidate image and calling the stable application from browser
 
-Promote the candidate to `stable`by clicking promote button in the Rolling router sticky sessions GUI. The result shoulb be that stable version is now the image that was just built by Wercker and the candidate is rolling/null:
+Promote the candidate to `stable`by clicking promote button in the Rolling router sticky sessions GUI. The result should be that the stable version is now the image that was just built by Wercker and the candidate is rolling/null:
 
 ![Logo](rolling-router-ss-candidate-promoted.png)
 
