@@ -328,9 +328,9 @@ This is easy to do just setting the stickyness to true:
 
 Now every subsequent request from the <i>same</i> client i.e. browser should go to the same application version, either stable or candidate, depending on which one it reached initially (based on the blend %). This means it should keep the session affinity and the user should experince the same version of the application all the time.
 
-When the session stickyness is set to false, the client will be served from the application version, either stable or candidate, based purely on the blend % and no session affinity will be in place.
+When the session stickyness is set to false, the client will be served from the application version, either stable or candidate, purely based on the blend % and no session affinity will be in place.
 
-As this maybe a bit harder to test without a load testing application you can still try opening multiple browsers to make requests to the application when session stickiness is set to true to experience this behaviour.
+As this may be a bit harder to test without a load testing application you can still try opening multiple browsers to make requests to the application when session stickiness is set to true to experience this behaviour.
 
 In real life application testing the session stickyness is important for the users to see a consistent user experience in case of web applications. In microservices testing, however, the session affinity has less value and can be set to false.
 
