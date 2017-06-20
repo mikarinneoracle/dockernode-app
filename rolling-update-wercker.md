@@ -118,7 +118,7 @@ Also, if the keyvalues are changed in the OCCS using the admin or the REST API t
 
 Since the rolling router sticky sessions Wercker CI/CD script for OCCS uses utilities like `jq`, `recode` and `curl` we have selected `Ubuntu`as the base image for our hello world `Node.js` application. 
 
-#### Build Ubunty with Node.js and required utilities
+#### Build Ubuntu with Node.js and required utilities
 
 First build Ubuntu image with the utilities included from `scratch` and then using the built Ubuntu image build the actual hello world application image for the rolling router sticky sessions deployment.
 
@@ -151,7 +151,7 @@ docker push mikarinneoracle/ubuntu
 
 #### Build the Hello World application image
 
-Using the custom built Ubunty image build the Node.js Hello world application. 
+Using the custom built Ubuntu image build the Node.js Hello world application. 
 The <a href="https://github.com/mikarinneoracle/hello-world">source code</a> includes a Dockerfile with the following:
 
 <pre>
