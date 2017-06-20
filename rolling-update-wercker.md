@@ -181,7 +181,7 @@ docker push mikarinneoracle/hello-world
 
 ### Creating the Wercker workflow 
 
-Login to your Wercker account and create a Wercker project for the Hello World Node.js application that we just built.
+Login to your Wercker account and create a Wercker `application` Hello World for the Node.js application that we just built.
 
 Then create a Wercker `workflow` with two steps `build` (the default) and `deploy`.
 
@@ -197,7 +197,7 @@ The YML pipeline names are identical to pipeline names.
 
 ### Creating Wercker global enviroment values for the Workflow
 
-Create the following environment values for the Wercker workflow:
+Create the following application environment values for the Wercker workflow:
 
 <pre>
   SERVICE_MANAGER:    OCCS admin url e.g. https://140.86.1.162
