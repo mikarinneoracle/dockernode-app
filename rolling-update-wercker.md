@@ -217,23 +217,13 @@ Create the following application environment values for the Wercker workflow:
 
 ![Logo](Wercker-app-env-variables.png)
 
-### Launch the initial build with the workflow
+### Launch the first build with the workflow
 
 After setting the application environment variables you can start the first build by clicking the ` trigger a build now` link as below:
 
 ![Logo](Wercker-initial-build.png)
 
-For the first time the workflow appears to be failing but this is just because the `candidate version` of the OCCS keyvalue is `rolling/null`.
-
-![Logo](Wercker-1st-time-deploy-error.png)
-
-Looking from the deploy step `ORACLE-OCCS-rolling-router-deploy` you can see the output:
-
-![Logo](Wercker-1st-time-deploy-error-output.png)
-
-This is normal and we can ignore this.
-
-We can see that the Hello world application candidate image was built with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushed to Docker hub by the workflow:
+Workflow builds a Hello world application candidate image with a `timestamp` tag (Wercker enviroment variable `$WERCKER_MAIN_PIPELINE_STARTED` in the deploy script) and pushes to Docker hub by the workflow:
 
 ![Logo](docker-hub-candidate-built.png)
 
@@ -277,31 +267,6 @@ A new candidate image with a new tag should be uploaded to Docker hub:
 ![Logo](docker-hub-new-candidate.png)
 
 It should be also deployed and started in OCCS:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
