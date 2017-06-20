@@ -78,7 +78,7 @@ Check the worker host `public_ip` from the OCCS admin:
 
 ![Logo](occs-host-ip.png)
 
-Check also the `API token` a.k.a Bearer from Settings/My Account:
+Check also the `API token` a.k.a Bearer from Settings/My Profile:
 
 ![Logo](occs-bearer.png)
 
