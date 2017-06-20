@@ -314,9 +314,29 @@ You can now increase the blend % and realod your application page a few times de
 
 At any point you can promote the candidate as stable. Then the blend goes to zero and the rolling router sticky sessions send only requests to the stable version. Then, you can deploy a new candidate making a change and pushing it to the repository and the process for the candidate starts again as seen earlier.
 
-You also play with the stable and candidate values by selecting them from the dropdows of the GUI to see the effect when reloading the application page. There a short delay while the rolling router sticky sessions configuration is loaded after changing the values. If reloading the application page too fast you might experience a server error. In that case just reload the page.
+You also play with the stable and candidate values by selecting them from the dropdows of the GUI to see the effect when reloading the application page. There a short delay while the rolling router sticky sessions configuration is loaded after changing the values. If reloading the application page too fast you might experience a gateway error. In that case just reload the page.
 
 ### Session stickyness between stable and candidate
+
+So far you have not played with the session stickiness (a.k.a affinity) yet. 
+
+This is easy to do just setting the stickyness to true:
+
+![Logo](rolling-router-ss-stable-set-stickiness.png)
+
+![Logo](rolling-router-ss-stable-set-stickiness-true.png)
+
+Now every subsequent request from the <i>same</i> client i.e. browser should go to the same application version, either stable or candidate, depending on which one it reached initially (based on the blend %). This means it should keep the session affinity and the user should experince the same version of the application all the time.
+
+When the session stickyness is set to false, the client will be served from the application version, either stable or candidate, based purely on the blend % and no session affinity will be in place.
+
+As this maybe a bit harder to test without a load testing application you can still try opening multiple browsers to make requests to the application when session stickiness is set to true to experience this behaviour.
+
+In real life appliaction testing the session stickyness is important for the users to see a consistent user experience in case of web applications. In microservices testing, however, the session affinity has less value and can be set to false.
+
+
+
+
 
 
 
