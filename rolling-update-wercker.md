@@ -146,7 +146,7 @@ docker push mikarinneoracle/ubuntu
 #### Build the Hello World application image
 
 Using the custom built Ubunty image build the Node.js Hello world application. 
-The <a href="https://github.com/mikarinneoracle/hello-world/tree/Node.js">source code</a> includes a Dockerfile with the following:
+The <a href="https://github.com/mikarinneoracle/hello-world">source code</a> includes a Dockerfile with the following:
 
 <pre>
 FROM mikarinneoracle/ubuntu:trusty
@@ -166,13 +166,12 @@ EXPOSE 3000
 CMD [ "npm", "start" ]
 </pre>
 
-You can clone the project and then build and push the image to Docker hub (change the repository bolded to match your Docker hub account) using the `Node.js` branch:
+You can clone the project and then build and push the image to Docker hub (change the repository bolded to match your Docker hub account):
 
 <pre>
 mkdir hello-world
 git clone git@github.com:mikarinneoracle/hello-world.git hello-world
 cd hello-world
-git checkout Node.js
 export tag=$(docker build -t hello-world . | grep 'Successfully built' | tail -c 13)
 docker tag $tag <b>mikarinneoracle</b>/hello-world:latest
 docker push mikarinneoracle/hello-world
