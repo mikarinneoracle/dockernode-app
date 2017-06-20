@@ -104,7 +104,7 @@ Set the values like this:
 
 This will store the values in OCCS keyvalues for the hello world application in host port 3000:
 
-![Logo](rolling-router-ss-occs-keyvalues.png)
+![Logo](occs-keyvalues.png)
 
 
 
