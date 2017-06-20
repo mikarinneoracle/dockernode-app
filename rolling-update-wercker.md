@@ -149,7 +149,7 @@ docker push mikarinneoracle/ubuntu
 
 ![Logo](docker-hub-ubuntu-trusty.png)
 
-#### Build the Hello World application image
+#### Build the Hello world application image
 
 Using the custom built Ubuntu image build the Node.js Hello world application. 
 The <a href="https://github.com/mikarinneoracle/hello-world">source code</a> includes a Dockerfile with the following:
