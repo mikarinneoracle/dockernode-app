@@ -1,6 +1,6 @@
-# Rolling update sticky sessions with Wercker
+# Rolling router sticky sessions with Wercker
 
-## Deploy the rolling update sticky sessions service
+## Deploy the rolling router sticky sessions service
 
 ### Clone the repository
 
